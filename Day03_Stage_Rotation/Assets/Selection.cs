@@ -6,19 +6,19 @@ public class Selection : MonoBehaviour
 {
     public int angle;
     public int duration;
-    private int toggle = 0;
+    private bool toggle = false;
     private float time = 0;
 
     private void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (toggle == 0)
-                toggle = 1;
+            if (toggle == false)
+                toggle = true;
             else
-                toggle = 0;
+                toggle = false;
         }
-        if (toggle == 1)
+        if (toggle == true)
         {
             time += Time.deltaTime;
             if (time < duration)
@@ -26,7 +26,7 @@ public class Selection : MonoBehaviour
             else
             {
                 time = 0;
-                toggle = 0;
+                toggle = false;
             }
         }
     }

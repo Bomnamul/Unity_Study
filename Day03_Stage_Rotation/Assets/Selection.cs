@@ -9,7 +9,7 @@ public class Selection : MonoBehaviour
     private bool toggle = false;
     private float time = 0;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -21,6 +21,7 @@ public class Selection : MonoBehaviour
         if (toggle == true)
         {
             time += Time.deltaTime;
+
             if (time < duration)
                 transform.Rotate(Vector3.up * angle * Time.deltaTime / duration);
             else
@@ -30,4 +31,25 @@ public class Selection : MonoBehaviour
             }
         }
     }
+    //private void FixedUpdate()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        if (toggle == false)
+    //            toggle = true;
+    //        else
+    //            toggle = false;
+    //    }
+    //    if (toggle == true)
+    //    {
+    //        time += Time.deltaTime;
+    //        if (time < duration)
+    //            transform.Rotate(Vector3.up * angle * Time.deltaTime / duration);
+    //        else
+    //        {
+    //            time = 0;
+    //            toggle = false;
+    //        }
+    //    }
+    //}
 }

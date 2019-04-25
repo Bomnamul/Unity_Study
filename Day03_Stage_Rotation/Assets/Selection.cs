@@ -7,7 +7,8 @@ public class Selection : MonoBehaviour
     public int angle;
     public int duration;
     private bool toggle = false;
-    private float time = 0;
+    public float restAngle;
+    public float restDuration;
 
     private void Update()
     {
@@ -17,20 +18,16 @@ public class Selection : MonoBehaviour
                 toggle = true;
             else
                 toggle = false;
+            restAngle = angle;
+            restDuration = duration;
         }
         if (toggle == true)
         {
-            time += Time.deltaTime;
-
-            //if (Vector3.Angle(Vector3.up, Vector3.up * angle * Time.deltaTime / duration) != angle)
-            if (time < duration)
+            transform.Rotate(Vector3.up * restAngle / restDuration * Time.deltaTime);
+            restAngle -= restAngle / restDuration * Time.deltaTime;
+            restDuration -= Time.deltaTime;
+            if (restAngle < 0 || restDuration < 0)
             {
-                print("time: " + Time.deltaTime);
-                transform.Rotate(Vector3.up * angle * Time.deltaTime / duration);
-            }
-            else
-            {
-                time = 0;
                 toggle = false;
             }
         }

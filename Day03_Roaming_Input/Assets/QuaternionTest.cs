@@ -31,6 +31,7 @@ public class QuaternionTest : MonoBehaviour
         print(Mathf.Approximately(transform.eulerAngles.y, 90f));
         transform.rotation = Quaternion.LookRotation(Vector3.right);
         print(Mathf.Approximately(transform.eulerAngles.y, 90f));
+        // RotateToward도 있음
 
         Quaternion q1 = Quaternion.Euler(0f, -45f, 0f);
         Quaternion q2 = Quaternion.Euler(0f, 45f, 0f);

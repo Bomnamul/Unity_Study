@@ -22,8 +22,12 @@ public class Selection : MonoBehaviour
         {
             time += Time.deltaTime;
 
+            //if (Vector3.Angle(Vector3.up, Vector3.up * angle * Time.deltaTime / duration) != angle)
             if (time < duration)
+            {
+                print("time: " + Time.deltaTime);
                 transform.Rotate(Vector3.up * angle * Time.deltaTime / duration);
+            }
             else
             {
                 time = 0;

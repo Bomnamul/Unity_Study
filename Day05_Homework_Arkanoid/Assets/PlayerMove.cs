@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private float speed = 10f;
+    private float speed = 20f;
+    private bool toggleRight = true;
+    private bool toggleLeft = true;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -15,11 +17,21 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
+        //float h = Input.GetAxisRaw("Horizontal");
 
-        h *= speed * Time.fixedDeltaTime;
+        float h = speed * Time.fixedDeltaTime;
 
-        rb.MovePosition(transform.position - transform.up * h);
+        //rb.MovePosition(transform.position - transform.up * h);
+
+        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 8.25)
+        {
+            rb.MovePosition(transform.position - transform.up * h);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -8.25)
+        {
+            rb.MovePosition(transform.position + transform.up * h);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

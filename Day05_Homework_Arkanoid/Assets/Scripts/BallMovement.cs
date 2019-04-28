@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    private float speed = 700f;
     private bool ready = true;
 
     Rigidbody rb;
@@ -15,12 +16,12 @@ public class BallMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && ready == true)
+        if (Input.GetButtonDown("Submit") && ready == true)
         {
             rb.isKinematic = false;
-            rb.AddForce(dir * 1000f);
+            rb.AddForce(dir * speed);
             ready = false;
         }
     }

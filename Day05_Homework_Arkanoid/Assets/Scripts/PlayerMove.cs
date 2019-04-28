@@ -5,16 +5,23 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private float speed = 20f;
-    private bool toggleRight = true;
-    private bool toggleLeft = true;
 
     Rigidbody rb;
+    AudioSource sfx;
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        sfx = GetComponent<AudioSource>();
     }
     // Update is called once per frame
+    private void Update()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            transform.DetachChildren();
+        }
+    }
     private void FixedUpdate()
     {
         //float h = Input.GetAxisRaw("Horizontal");
@@ -32,10 +39,9 @@ public class PlayerMove : MonoBehaviour
         {
             rb.MovePosition(transform.position + transform.up * h);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.DetachChildren();
-        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        sfx.Play();
     }
 }

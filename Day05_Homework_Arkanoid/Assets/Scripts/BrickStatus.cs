@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 public class BrickStatus : MonoBehaviour
 {
     private int bricks;
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (transform.childCount == 0)
         {

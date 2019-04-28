@@ -13,6 +13,7 @@ public class BrickStatus : MonoBehaviour
         if (transform.childCount == 0)
         {
             SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+            ScoreManager.score = 0;
         }
     }
 }

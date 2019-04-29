@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour
             transform.DetachChildren();
         }
     }
-    private void FixedUpdate()
+    private void FixedUpdate() // update로 해보자, player의 rigidbody가 필요한가?
     {
         //float h = Input.GetAxisRaw("Horizontal");
 
@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
 
         //rb.MovePosition(transform.position - transform.up * h);
 
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 8.25)
+        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 8.25) // Mathf.Clamp(pos.x, -3.1f, 3.1f) 써볼 것
         {
             rb.MovePosition(transform.position - transform.up * h);
         }

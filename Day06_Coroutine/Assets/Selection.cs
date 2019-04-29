@@ -23,6 +23,9 @@ public class Selection : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isRotating)
         {
+            isRotating = true;
+            remainingAngle = angle;
+            remainingDuration = duration;
             StartCoroutine(Rotating());
         }
     }
@@ -30,7 +33,6 @@ public class Selection : MonoBehaviour
     IEnumerator Rotating()
     {
         float anglePerFrame = (remainingAngle / remainingDuration) * Time.deltaTime;
-
         while (true)
         {
             if (remainingAngle < anglePerFrame)

@@ -47,7 +47,7 @@ public class MapGen : MonoBehaviour
                 yield return new WaitForSeconds(3f);
                 transform.GetChild(deadZone).Translate(-Vector3.up * 2f);
                 yield return new WaitForSeconds(1f);
-                smoke_instance.transform.parent = transform;
+                smoke_instance.transform.parent = transform.GetChild(deadZone);
                 Destroy(transform.GetChild(deadZone).gameObject); // ?
                 yield return new WaitForSeconds(1f); // ?
             }

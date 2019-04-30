@@ -35,7 +35,9 @@ public class Jump : MonoBehaviour
         print("Jump3");
         rb.AddForce(Vector3.up * 500f);
         rb.angularVelocity = Vector3.up * 30;
+        rb.angularDrag = 2;
         yield return new WaitForSeconds(2f);
+        rb.angularDrag = 0;
         isJumping = false;
     }
 }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float h;
+    private float v;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+
+        var dir = new Vector3(h, 0f, v);
+
+        if (dir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(dir);
+        }   
     }
 }

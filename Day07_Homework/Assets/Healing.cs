@@ -8,6 +8,12 @@ public class Healing : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(heal, collision.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Instantiate(heal, collision.transform);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        //Destroy(collision.transform.GetChild(1).gameObject);
+        Destroy(collision.transform.Find("HealingEffect(Clone)").gameObject);
     }
 }

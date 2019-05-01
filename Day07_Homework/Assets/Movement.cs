@@ -20,11 +20,9 @@ public class Movement : MonoBehaviour
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
 
-        var dirH = new Vector3(h, 0f, 0f);
-        var dirV = new Vector3(0f, 0f, v);
+        var dir = new Vector3(h, 0f, v);
 
-        rb.transform.Translate(dirH * speed * Time.deltaTime);
-        rb.transform.Translate(dirV * speed * Time.deltaTime);
+        transform.Translate(dir.normalized * speed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

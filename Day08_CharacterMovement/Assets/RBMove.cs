@@ -57,6 +57,30 @@ public class RBMove : MonoBehaviour
         transform.LookAt(transform.position + moveDirection);
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        Vector3 collisionVector = hit.point - transform.position;
+        float collisionAngle = Vector3.Angle(transform.forward, collisionVector);
+        print(collisionAngle);
+        print(collisionVector);
+        if (collisionAngle > 45 && collision.gameObject.tag == "Slip")
+        {
+            rb.useGravity = false;
+            rb.isKinematic = true;
+            //rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Slip")
+        {
+            //rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.useGravity = true;
+            rb.isKinematic = false;
+        }
+    }
+
     private void FixedUpdate()
     {
         Vector3 move = moveDirection * Time.fixedDeltaTime;

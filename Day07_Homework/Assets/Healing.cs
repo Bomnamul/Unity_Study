@@ -11,9 +11,10 @@ public class Healing : MonoBehaviour
         Instantiate(heal, collision.transform);
     }
 
-    private void OnCollisionExit(Collision collision)
+    IEnumerator OnCollisionExit(Collision collision)
     {
         //Destroy(collision.transform.GetChild(1).gameObject);
+        yield return new WaitForSeconds(1f);
         Destroy(collision.transform.Find("HealingEffect(Clone)").gameObject);
     }
 }

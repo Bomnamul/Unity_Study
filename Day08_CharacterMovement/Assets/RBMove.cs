@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class RBMove : MonoBehaviour
 {
     public float moveSpeed = 8f;
     public float jumpHeight = 2f;
+    public float slopeLimit = 45;
     public LayerMask groundMask;
     public Transform groundChecker;
 
@@ -13,7 +15,12 @@ public class RBMove : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     [SerializeField]
     bool isGrounded = false;
+    [SerializeField]
+    bool onSlidingSlope = false;
+    bool isJumping = false;
     RaycastHit hit;
+
+    Vector3 hitNormal;
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +53,7 @@ public class RBMove : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange); // rigidbody의 무게 반영 안됨
+            StartCoroutine(Jumping());
         }
 
         float h = Input.GetAxisRaw("Horizontal");
@@ -55,30 +61,28 @@ public class RBMove : MonoBehaviour
         moveDirection = new Vector3(h, 0f, v).normalized;
         moveDirection *= moveSpeed;
         transform.LookAt(transform.position + moveDirection);
-    }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        Vector3 collisionVector = hit.point - transform.position;
-        float collisionAngle = Vector3.Angle(transform.forward, collisionVector);
-        print(collisionAngle);
-        print(collisionVector);
-        if (collisionAngle > 45 && collision.gameObject.tag == "Slip")
+        onSlidingSlope = Vector3.Angle(Vector3.up, hit.normal) > slopeLimit;
+        print(Vector3.Angle(Vector3.up, hit.normal));
+
+        if (!onSlidingSlope && isGrounded && !isJumping)
         {
-            rb.useGravity = false;
-            rb.isKinematic = true;
-            //rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            rb.drag = 100;
+        }
+        else
+        {
+            rb.drag = 0;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    IEnumerator Jumping()
     {
-        if (collision.gameObject.tag == "Slip")
-        {
-            //rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.useGravity = true;
-            rb.isKinematic = false;
-        }
+        isJumping = true;
+        rb.drag = 0;
+        rb.velocity = Vector3.zero;
+        rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        yield return new WaitForSeconds(0.1f);
+        isJumping = false;
     }
 
     private void FixedUpdate()

@@ -11,12 +11,15 @@ public class Gun : MonoBehaviour
     Camera fpsCamera;
     float nextTimeToFire = 0f;
     Vector3 originPos, smoothVel;
+    Transform fx;
+    Transform shell;
 
     // Start is called before the first frame update
     void Start()
     {
         fpsCamera = GetComponentInParent<Camera>();
         originPos = transform.localPosition;
+        shell = transform.GetChild(1).transform;
     }
 
     // Update is called once per frame
@@ -53,6 +56,18 @@ public class Gun : MonoBehaviour
             }
         }
         transform.localPosition -= Vector3.forward * UnityEngine.Random.Range(0.07f, 0.3f);
+
+        StartCoroutine(ShellRoutine());
+    }
+
+    IEnumerator ShellRoutine()
+    {
+        fx = Instantiate(shell, transform);
+        fx.GetComponent<Rigidbody>().isKinematic = false;
+        fx.GetComponent<Rigidbody>().AddForce(transform.right * 150f);
+        fx.parent = null;
+        yield return new WaitForSeconds(5f);
+        Destroy(GameObject.Find("M4_Shell(Clone)"));
     }
 
     void OffFlashLight()

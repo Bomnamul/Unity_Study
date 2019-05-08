@@ -11,12 +11,15 @@ public class Gun : MonoBehaviour
     public Transform shellEjection;
     public GameObject impactFX;
     public GameObject bulletHolePrefab;
+    public GameObject holdPos; // 집은 물건의 위치
 
     Camera fpsCamera;
     float nextTimeToFire = 0f;
     Vector3 originPos, smoothVel;
     float recoilAngle;
     float recoilVel;
+    bool isHolding = false; // 물건을 들고 있는지 판단
+    Transform originParent; // hold될 transform의 기존 부모
     //Transform fx;
     //Transform shell;
 
@@ -33,10 +36,23 @@ public class Gun : MonoBehaviour
     {
         fpsCamera.transform.localRotation *= Quaternion.Euler(Vector3.left * recoilAngle);
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Holding();
+        }
+
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
-            Shoot();
+
+            if (isHolding)
+            {
+                Throwing();
+            }
+            else
+            {
+                Shoot();
+            }
         }
 
         // kick damping
@@ -48,6 +64,40 @@ public class Gun : MonoBehaviour
 
         // recoil damping
         recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilVel, 0.2f);
+    }
+
+    private void Holding()
+    {
+        if (!isHolding)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, 2f)) // 2m안에 hit가 발생하면 hit의 부모를 기억해두고 holdPos의 자식으로 넣음 
+            {
+                if (hit.transform.GetComponent<Rigidbody>()) // 잡을 수 있는 물체인지 Rigidbody의 유무로 판단
+                {
+                    isHolding = true;
+                    Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+                    rb.isKinematic = true;
+                    hit.transform.localPosition = holdPos.transform.position;
+                    hit.transform.localRotation = holdPos.transform.rotation;
+                    originParent = hit.transform.parent;
+                    hit.transform.parent = holdPos.transform;
+                }
+            }
+        }
+        else
+        {
+            Throwing();
+        }
+    }
+
+    private void Throwing() // rb에 AddForce로 힘을 가하고 부모를 원래대로 돌림
+    {
+        Rigidbody rb = holdPos.transform.GetChild(0).GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.AddForce(fpsCamera.transform.forward * 500f);
+        holdPos.transform.GetChild(0).parent = originParent;
+        isHolding = false;
     }
 
     private void Shoot()

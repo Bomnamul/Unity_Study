@@ -6,6 +6,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public float fireRate = 10; // 초당 격발 횟수
+    public int ammo = 30;
+    public bool onReload = false;
     public Light muzzleFlash;
     public GameObject shellPrefab;
     public Transform shellEjection;
@@ -18,6 +20,7 @@ public class Gun : MonoBehaviour
     Vector3 originPos, smoothVel;
     float recoilAngle;
     float recoilVel;
+    Animator anim;
     //bool isHolding = false; // 물건을 들고 있는지 판단
     //Transform originParent; // hold될 transform의 기존 부모
     //Transform fx;
@@ -28,6 +31,7 @@ public class Gun : MonoBehaviour
     {
         fpsCamera = GetComponentInParent<Camera>();
         originPos = transform.localPosition;
+        anim = GetComponent<Animator>();
         //shell = transform.GetChild(1).transform;
     }
 
@@ -41,7 +45,7 @@ public class Gun : MonoBehaviour
         //    Holding();
         //}
 
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && !onReload)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
 
@@ -51,8 +55,22 @@ public class Gun : MonoBehaviour
             //}
             //else
             //{
+            if (ammo > 0)
+            {
                 Shoot();
+                ammo--;
+                print(ammo);
+            }
+            else
+            {
+                // need empty sound
+            }
             //}
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && ammo < 30)
+        {
+            StartCoroutine(Reload());
         }
 
         // kick damping
@@ -64,6 +82,17 @@ public class Gun : MonoBehaviour
 
         // recoil damping
         recoilAngle = Mathf.SmoothDamp(recoilAngle, 0, ref recoilVel, 0.2f);
+    }
+
+    IEnumerator Reload()
+    {
+        onReload = true;
+        anim.SetBool("OnReload", onReload);
+        ammo = 30;
+        print(ammo);
+        yield return new WaitForSeconds(1f);
+        onReload = false;
+        anim.SetBool("OnReload", onReload);
     }
 
     //private void Holding()

@@ -1782,6 +1782,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 3dc3b64148002b243b92395453c35ca0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 774e6d802df695c428394c1dbf65134b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc3b64148002b243b92395453c35ca0, type: 3}
 --- !u!1 &635646746
@@ -4165,6 +4170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 10
+  ammo: 30
+  onReload: 0
   muzzleFlash: {fileID: 1173695253}
   shellPrefab: {fileID: 5882786532210450250, guid: bc155111c150ef442ae9a9734a66fb4b,
     type: 3}

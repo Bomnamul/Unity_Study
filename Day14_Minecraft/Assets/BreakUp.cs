@@ -20,7 +20,7 @@ public class BreakUp : MonoBehaviour
         lastHitTime = Time.time;
     }
 
-    public void Hit()
+    public void Hit() // Coroutine...
     {
         StopAllCoroutines();
         //CancelInvoke();

@@ -79,7 +79,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AttackBT
+  m_Name: HammerAttackBT
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -393,6 +393,31 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1107 &3922378645053999736
+AnimatorStateMachine:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Attack
+  m_ChildStates:
+  - serializedVersion: 1
+    m_State: {fileID: 8727836769062573525}
+    m_Position: {x: 300, y: -40, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -7602818532089472743}
+    m_Position: {x: 300, y: 60, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 40, y: -30, z: 0}
+  m_EntryPosition: {x: 40, y: -130, z: 0}
+  m_ExitPosition: {x: 900, y: -30, z: 0}
+  m_ParentStateMachinePosition: {x: 600, y: -40, z: 0}
+  m_DefaultState: {fileID: 8727836769062573525}
 --- !u!1107 &4976672215696537157
 AnimatorStateMachine:
   serializedVersion: 5
@@ -408,20 +433,17 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 8467389689324469701}
     m_Position: {x: 300, y: 160, z: 0}
+  m_ChildStateMachines:
   - serializedVersion: 1
-    m_State: {fileID: -7602818532089472743}
-    m_Position: {x: 410, y: -40, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8727836769062573525}
-    m_Position: {x: 190, y: -40, z: 0}
-  m_ChildStateMachines: []
+    m_StateMachine: {fileID: 3922378645053999736}
+    m_Position: {x: 300, y: -40, z: 0}
   m_AnyStateTransitions:
   - {fileID: -7839935111865885812}
   - {fileID: -2139795922424531975}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 320, y: -130, z: 0}
+  m_AnyStatePosition: {x: 40, y: -30, z: 0}
   m_EntryPosition: {x: 40, y: 70, z: 0}
   m_ExitPosition: {x: 900, y: 100, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

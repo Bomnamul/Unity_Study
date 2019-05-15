@@ -27,11 +27,18 @@ public class Movement : MonoBehaviour
 
         UpdateAnimation(heading);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             anim.SetFloat("LastDirX", lastX);
             anim.SetFloat("LastDirY", lastY);
             anim.SetTrigger("Attack");
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            anim.SetFloat("LastDirX", lastX);
+            anim.SetFloat("LastDirY", lastY);
+            anim.SetTrigger("OnAttack");
         }
     }
 

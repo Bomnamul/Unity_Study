@@ -50,6 +50,39 @@ public class PlayerFSM : MonoBehaviour
     //    }
     //}
 
+    //IEnumerator Move()
+    //{
+    //    while(true)
+    //    {
+    //        float h = Input.GetAxisRaw("Horizontal");
+    //        float v = Input.GetAxisRaw("Vertical");
+    //        Vector3 heading = new Vector3(h, v, 0).normalized;
+    //        Vector3 movement = heading * moveSpeed * Time.deltaTime;
+    //        transform.position += movement;
+
+    //        UpdateAnimation(heading);
+
+    //        if (Input.GetKeyDown(KeyCode.X))
+    //        {
+    //            anim.SetTrigger("OnAttack");
+    //            SetState(State.Attack);
+    //            break;
+    //        }
+
+    //        if (Input.GetKeyDown(KeyCode.C))
+    //        {
+    //            anim.SetTrigger("OnHammerAttack");
+    //            SetState(State.HammerAttack);
+    //            break;
+    //        }
+
+    //        anim.SetInteger("State", (int)state);
+    //        anim.SetInteger("PrevState", (int)prevState);
+
+    //        yield return null;
+    //    }
+    //}
+
     IEnumerator Start()
     {
         while(true)
@@ -103,39 +136,6 @@ public class PlayerFSM : MonoBehaviour
             SetState(State.HammerAttack);
         }
     }
-
-    //IEnumerator Move()
-    //{
-    //    while(true)
-    //    {
-    //        float h = Input.GetAxisRaw("Horizontal");
-    //        float v = Input.GetAxisRaw("Vertical");
-    //        Vector3 heading = new Vector3(h, v, 0).normalized;
-    //        Vector3 movement = heading * moveSpeed * Time.deltaTime;
-    //        transform.position += movement;
-
-    //        UpdateAnimation(heading);
-
-    //        if (Input.GetKeyDown(KeyCode.X))
-    //        {
-    //            anim.SetTrigger("OnAttack");
-    //            SetState(State.Attack);
-    //            break;
-    //        }
-
-    //        if (Input.GetKeyDown(KeyCode.C))
-    //        {
-    //            anim.SetTrigger("OnHammerAttack");
-    //            SetState(State.HammerAttack);
-    //            break;
-    //        }
-
-    //        anim.SetInteger("State", (int)state);
-    //        anim.SetInteger("PrevState", (int)prevState);
-
-    //        yield return null;
-    //    }
-    //}
 
     private void UpdateAnimation(Vector3 heading)
     {

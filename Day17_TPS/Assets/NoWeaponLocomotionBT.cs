@@ -18,7 +18,8 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         pc.FrameMove();
-        if (Input.GetKeyDown(KeyCode.E))
+        GameObject weapon = pc.GetNearestWeaponIn(radius: 1.5f, angle: 180f, weaponTag: "RightWeapon");
+        if (Input.GetKeyDown(KeyCode.E) && weapon != null)
         {
             animator.SetTrigger("PickupWeapon");
         }

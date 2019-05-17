@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundChecker;
     public Transform weaponHolder;
+    public Transform backHolder;
 
     Rigidbody rb;
     bool isGrounded = false;

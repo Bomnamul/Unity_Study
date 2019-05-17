@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoWeaponLocomotionBT : StateMachineBehaviour
+public class DisarmWeapon : StateMachineBehaviour
 {
-    public float moveSpeed = 4f;
-
     PlayerController pc;
     Transform weaponHolder;
     Transform backHolder;
@@ -14,7 +12,6 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         pc = animator.GetComponent<PlayerController>();
-        pc.moveSpeed = moveSpeed;
         weaponHolder = pc.weaponHolder;
         backHolder = pc.backHolder;
     }
@@ -22,16 +19,11 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        pc.FrameMove();
-        GameObject weapon = pc.GetNearestWeaponIn(radius: 1.5f, angle: 180f, weaponTag: "RightWeapon");
-        if (Input.GetKeyDown(KeyCode.E) && weapon != null)
+        if (weaponHolder.childCount != 0 && stateInfo.normalizedTime > 0.5)
         {
-            animator.SetTrigger("PickupWeapon");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            animator.SetTrigger("ArmDisarm");
+            weaponHolder.GetChild(0).SetParent(backHolder);
+            backHolder.GetChild(0).localPosition = Vector3.zero;
+            backHolder.GetChild(0).localRotation = Quaternion.identity;
         }
     }
 

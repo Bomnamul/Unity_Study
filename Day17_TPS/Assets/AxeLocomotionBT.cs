@@ -35,6 +35,11 @@ public class AxeLocomotionBT : StateMachineBehaviour
         {
             animator.SetTrigger("ArmDisarm");
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            animator.SetTrigger("Attack");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

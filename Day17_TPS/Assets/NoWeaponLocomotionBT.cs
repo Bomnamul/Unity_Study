@@ -5,39 +5,28 @@ using UnityEngine;
 public class NoWeaponLocomotionBT : StateMachineBehaviour
 {
     public float moveSpeed = 4f;
-
     PlayerController pc;
-    Transform weaponHolder;
-    Transform backHolder;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         pc = animator.GetComponent<PlayerController>();
         pc.moveSpeed = moveSpeed;
-        weaponHolder = pc.weaponHolder;
-        backHolder = pc.backHolder;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         pc.FrameMove();
-        GameObject weapon = pc.GetNearestWeaponIn(radius: 1.5f, angle: 180f, weaponTag: "RightWeapon");
-        if (Input.GetKeyDown(KeyCode.E) && weapon != null)
+
+        if (Input.GetKeyDown(KeyCode.E) && !pc.isEquipped && !animator.IsInTransition(0)) // !animator.IsInTransition: Transition 구간에선 key 입력을 안 받음
         {
             animator.SetTrigger("PickupWeapon");
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.X) && pc.isDisarmed && !pc.isEquipped && !animator.IsInTransition(0))
         {
-            animator.SetTrigger("ArmDisarm");
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            animator.SetTrigger("EquipAndAttack");
-            
+            animator.SetTrigger("Equip");
         }
     }
 

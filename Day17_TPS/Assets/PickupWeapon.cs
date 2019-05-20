@@ -17,23 +17,19 @@ public class PickupWeapon : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (weaponHolder.childCount == 0 && stateInfo.normalizedTime > 0.22)
+        if (weaponHolder.childCount == 0 && stateInfo.normalizedTime > 0.22f)
         {
             GameObject weapon = pc.GetNearestWeaponIn(radius: 1.5f, angle: 180f, weaponTag: "RightWeapon");
             if (weapon == null)
-            {
                 return;
-            }
             weapon.GetComponent<Rigidbody>().isKinematic = true;
             Collider[] colliders = weapon.GetComponents<Collider>();
             foreach (var c in colliders)
-            {
                 c.enabled = false;
-            }
             weapon.transform.SetParent(weaponHolder);
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
-            animator.SetBool("HaveWeapon", true);
+            animator.SetInteger("HoldingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
         }
     }
 

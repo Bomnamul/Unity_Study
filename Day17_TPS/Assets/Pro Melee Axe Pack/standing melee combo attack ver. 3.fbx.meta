@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 6c6d485823e4ec145ae423f17d04e299
+guid: fae9686140a04b4488d9dcd4304fb132
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -203655887218126122
     second: mixamo.com
+  - first:
+      74: -3780516532778130023
+    second: mixamo.com (1)
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -954,7 +957,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 17f5033d7b8567040bb5ade86f2afb88,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 04970f493ddc7c44aaa31b6b57d8bb23,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

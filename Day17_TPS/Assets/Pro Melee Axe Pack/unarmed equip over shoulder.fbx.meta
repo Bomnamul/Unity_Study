@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 821cf3bb80c89564183a478cdecf645c
+guid: d8dc3545bd074a54c99e3816b7403778
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: EquipWeapon
+    second: Equip
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: EquipWeapon
+      name: Equip
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
@@ -53,12 +53,20 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5
+        functionName: Equip
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 168a67ecee6a87f42bb71c831750149d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -954,7 +962,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 17f5033d7b8567040bb5ade86f2afb88,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 04970f493ddc7c44aaa31b6b57d8bb23,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

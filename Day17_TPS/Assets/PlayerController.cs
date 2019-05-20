@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundChecker;
     public Transform weaponHolder;
-    public Transform backHolder;
+    public Transform weaponDisarmHolder;
 
     Rigidbody rb;
     bool isGrounded = false;
@@ -22,6 +22,20 @@ public class PlayerController : MonoBehaviour
 
     MouseLook mouseLook;
     Animator anim;
+
+    public bool isEquipped {
+        get
+        {
+            return weaponHolder != null && weaponHolder.childCount > 0;
+        }
+    }
+
+    public bool isDisarmed {
+        get
+        {
+            return weaponDisarmHolder != null && weaponDisarmHolder.childCount > 0;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +55,10 @@ public class PlayerController : MonoBehaviour
                                         0.2f,
                                         groundMask,
                                         QueryTriggerInteraction.Ignore);
-
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump(jumpHeight);
         }
-
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         float mouseMoveX = Input.GetAxis("Mouse X");
@@ -59,13 +71,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            moveDirection = new Vector3(h, 0, v).normalized;
+            moveDirection = (new Vector3(h, 0, v)).normalized;
             float rotationY = mouseMoveX * rotationSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationY);
         }
         else
         {
-            moveDirection = new Vector3(0, 0, v).normalized;
+            moveDirection = (new Vector3(0, 0, v)).normalized;
             float rotationY = h * rotationSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationY);
         }
@@ -77,10 +89,11 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("v", v);
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() // 초기화가 안되면 움직이는 중에 다른 동작시 움직임
     {
         Vector3 move = moveDirection * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + move);
+        moveDirection = Vector3.zero;
     }
 
     private void Jump(float jumpHeight)
@@ -99,19 +112,12 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         if (rb.velocity.y > 0)
-        {
             return;
-        }
         angle = Vector3.Angle(Vector3.up, collision.contacts[0].normal);
-
-        if (30 <= angle && angle <= 45) // 미끄러지지 않을 각도
-        {
+        if (30 <= angle && angle <= 45)
             rb.drag = 100;
-        }
         else
-        {
             rb.drag = 0;
-        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -120,11 +126,11 @@ public class PlayerController : MonoBehaviour
         angle = 0;
     }
 
-    public GameObject GetNearestWeaponIn(float radius, float angle, string weaponTag) // internal로 해도 됨 (public이랑 같으나 함수 내에서?)
+    public GameObject GetNearestWeaponIn(float radius, float angle, string weaponTag)
     {
         GameObject[] weapons = GameObject.FindGameObjectsWithTag(weaponTag);
         var list = new List<GameObject>(weapons);
-        int index = list.FindIndex(o => 
+        int index = list.FindIndex(o =>
         {
             Vector3 dir = o.transform.position - transform.position;
             return dir.magnitude < radius && Vector3.Angle(dir, transform.forward) < angle;
@@ -132,5 +138,24 @@ public class PlayerController : MonoBehaviour
         if (index == -1)
             return null;
         return list[index];
+    }
+    void Disarm()
+    {
+        if (isEquipped)
+        {
+            Transform weapon = weaponHolder.GetChild(0);
+            weapon.SetParent(weaponDisarmHolder);
+            anim.SetInteger("HoldingWeaponID", 0);
+        }
+    }
+
+    void Equip() // callback function
+    {
+        if (isDisarmed)
+        {
+            Transform weapon = weaponDisarmHolder.GetChild(0);
+            weapon.SetParent(weaponHolder);
+            anim.SetInteger("HoldingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
+        }
     }
 }

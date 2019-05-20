@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 745c89c5940f8b84280163fb710b0ffe
+guid: ef8d2af7b95fe3b438baf82fd4d6f38f
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: DisarmWeapon
+    second: Disarm
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: DisarmWeapon
+      name: Disarm
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
@@ -46,19 +46,27 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5
+        functionName: Disarm
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 168a67ecee6a87f42bb71c831750149d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -954,7 +962,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 17f5033d7b8567040bb5ade86f2afb88,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 04970f493ddc7c44aaa31b6b57d8bb23,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

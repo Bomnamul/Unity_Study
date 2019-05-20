@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundChecker;
     public Transform weaponHolder;
+    public Transform bowHolder;
     public Transform weaponDisarmHolder;
 
     Rigidbody rb;

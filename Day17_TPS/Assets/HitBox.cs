@@ -85,10 +85,12 @@ public class HitBox : MonoBehaviour
     {
         if (colliderList == null)
         {
-            return;
+            colliderList = new List<Collider>();
         }
-
-        colliderList.Clear();
+        else
+        {
+            colliderList.Clear();
+        }
 
         if (state == ColliderState.Closed)
         {
@@ -127,7 +129,7 @@ public class HitBox : MonoBehaviour
             //{
             //    responder.CollisionWith(c);
             //}
-            print("Colliding: " + c.name);
+            //print("Colliding: " + c.name);
         }
         state = colliderList.Count > 0 ? ColliderState.Colliding : ColliderState.Open;
     }

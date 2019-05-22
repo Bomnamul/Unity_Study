@@ -9,7 +9,7 @@ public class HurtBox : MonoBehaviour
     public Color collidingColor;
     public bool drawGizmo = true;
 
-    ColliderState state = ColliderState.Open; // HitBox에서 바깥에 정의 해놓아서 그냥 사용가능
+    public ColliderState state = ColliderState.Open; // HitBox에서 바깥에 정의 해놓아서 그냥 사용가능
 
     private void OnDrawGizmos()
     {
@@ -38,7 +38,7 @@ public class HurtBox : MonoBehaviour
     public void GetHitby(int damage)
     {
         state = ColliderState.Colliding;
-        Invoke("ResetState", 0.2f);
+        Invoke("ResetState", 0.1f);
     }
 
     void ResetState()

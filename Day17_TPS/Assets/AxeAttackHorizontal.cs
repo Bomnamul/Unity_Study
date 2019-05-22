@@ -40,7 +40,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
                             hitDirection, 
                             out hit, 
                             2f, 
-                            1024,
+                            1 << LayerMask.NameToLayer("HurtBox"), // int layerMask
                             QueryTriggerInteraction.Collide)) // <<: HurtBox만 사용하겠다, bit 연산
         {
             hitPoint = hit.point;

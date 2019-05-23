@@ -22,16 +22,33 @@ public class PickupWeapon : StateMachineBehaviour
         if (weaponHolder.childCount == 0 && stateInfo.normalizedTime > 0.22f)
         {
             GameObject weapon = pc.GetNearestWeaponIn(radius: 1.5f, angle: 180f, weaponTag: "RightWeapon");
-            if (weapon == null)
-                return;
-            weapon.GetComponent<Rigidbody>().isKinematic = true;
-            Collider[] colliders = weapon.GetComponents<Collider>();
-            foreach (var c in colliders)
-                c.enabled = false;
-            weapon.transform.SetParent(weaponHolder);
-            weapon.transform.localPosition = Vector3.zero;
-            weapon.transform.localRotation = Quaternion.identity;
-            animator.SetInteger("HoldingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
+            if (weapon != null && weapon.transform.parent != pc.weaponDisarmHolder)
+            {
+                weapon.GetComponent<Rigidbody>().isKinematic = true;
+                Collider[] colliders = weapon.GetComponents<Collider>();
+                foreach (var c in colliders)
+                    c.enabled = false;
+                weapon.transform.SetParent(weaponHolder);
+                weapon.transform.localPosition = Vector3.zero;
+                weapon.transform.localRotation = Quaternion.identity;
+                animator.SetInteger("HoldingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
+            }
+        }
+
+        if (bowHolder.childCount == 0 && stateInfo.normalizedTime > 0.22f)
+        {
+            GameObject bow = pc.GetNearestWeaponIn(radius: 1.5f, angle: 180f, weaponTag: "LeftWeapon");
+            if (bow != null && bow.transform.parent != pc.weaponDisarmHolder)
+            {
+                bow.GetComponent<Rigidbody>().isKinematic = true;
+                Collider[] colliders = bow.GetComponents<Collider>();
+                foreach (var c in colliders)
+                    c.enabled = false;
+                bow.transform.SetParent(bowHolder);
+                bow.transform.localPosition = Vector3.zero;
+                bow.transform.localRotation = Quaternion.identity;
+                animator.SetInteger("HoldingWeaponID", bow.GetComponent<WeaponType>().weaponId);
+            }
         }
     }
 

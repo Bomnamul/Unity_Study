@@ -66,6 +66,11 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
             hitBox.UpdateHitBox();
         }
 
+        if (0.45f < stateInfo.normalizedTime && !animator.IsInTransition(0))
+        {
+            hitBox.StopCheckingCollision();
+        }
+
         if (Input.GetKeyDown(KeyCode.C) && stateInfo.normalizedTime >= 0.5f)
         {
             animator.SetTrigger("ComboAttack");
@@ -87,10 +92,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hitBox.StopCheckingCollision();
         animator.SetBool("ComboAttack", false);
-
-        //hitBox.StopCheckingCollision();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

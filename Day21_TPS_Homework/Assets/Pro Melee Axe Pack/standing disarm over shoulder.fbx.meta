@@ -60,7 +60,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.5
-        functionName: Disarm
+        functionName: DisarmAxe
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 168a67ecee6a87f42bb71c831750149d,
           type: 3}

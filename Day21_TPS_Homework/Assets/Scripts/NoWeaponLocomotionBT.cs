@@ -19,6 +19,11 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour
     {
         pc.FrameMove();
 
+        if (Input.GetKeyDown(KeyCode.C) && !animator.IsInTransition(0))
+        {
+            animator.SetTrigger("ComboAttack");
+        }
+
         if (Input.GetKeyDown(KeyCode.E) && !pc.isEquipped && !animator.IsInTransition(0)) // !animator.IsInTransition: Transition 구간에선 key 입력을 안 받음
         {
             animator.SetTrigger("PickupWeapon");
@@ -26,7 +31,14 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour
 
         if (Input.GetKeyDown(KeyCode.X) && pc.isDisarmed && !pc.isEquipped && !animator.IsInTransition(0))
         {
-            animator.SetTrigger("Equip");
+            if (pc.weaponDisarmHolder.GetChild(0).tag == "RightWeapon")
+            {
+                animator.SetTrigger("Equip");
+            }
+            else if (pc.weaponDisarmHolder.GetChild(0).tag == "LeftWeapon")
+            {
+                animator.SetTrigger("EquipBow");
+            }
         }
     }
 

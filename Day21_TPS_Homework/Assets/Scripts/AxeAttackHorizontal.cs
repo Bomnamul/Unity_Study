@@ -7,6 +7,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     //Transform axe;
 
     public int damage = 5;
+    public bool enabledMultipleHits = false;
 
     HitBox hitBox;
     Dictionary<int, int> hitObjects;
@@ -14,45 +15,22 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     //HitBox hitBox;
     //bool isDamaged = false;
 
-    public void CollisionWith(Collider collider)
+    public void CollisionWith(Collider collider, HitBox hitBox)
     {
         HurtBox hurtBox = collider.GetComponent<HurtBox>();
-        int id = collider.transform.root.gameObject.GetInstanceID();
-        if (!hitObjects.ContainsKey(id)) // GetInstanceID: Object의 unique한 id (hash key로 사용 가능)
-        {
-            hitObjects[id] = 1;
-        }
-        else
-        {
-            hitObjects[id] += 1;
-            return;
-        }
 
         hurtBox.GetHitby(damage); // debugging
         //collider.GetComponentInParent<Health>().DecreaseHP(damage);
-        Vector3 cameraTargetPosition = hitBox.transform.root.Find("CameraTarget").transform.position;
-        RaycastHit hit;
-        Vector3 hitPoint = collider.transform.position;
-        Vector3 hitNormal = cameraTargetPosition - hitPoint;
-        hitNormal = hitNormal.normalized;
-        Vector3 hitDirection = -hitNormal;
-        if (Physics.Raycast(cameraTargetPosition, 
-                            hitDirection, 
-                            out hit, 
-                            2f, 
-                            1 << LayerMask.NameToLayer("HurtBox"), // int layerMask
-                            QueryTriggerInteraction.Collide)) // <<: HurtBox만 사용하겠다, bit 연산
-        {
-            hitPoint = hit.point;
-            hitNormal = hit.normal;
-            hitDirection = hitPoint - cameraTargetPosition;
-            hitDirection = hitDirection.normalized;
-        }
 
-        Debug.Log("1 Hit: " + collider.name);
-        Debug.DrawLine(cameraTargetPosition, hitPoint, Color.yellow, 2f);
-        Debug.DrawLine(hitPoint, hitPoint + hitNormal, Color.magenta, 2f);
-        Debug.DrawLine(hitPoint, hitPoint + hitDirection, Color.cyan, 2f);
+        Vector3 cameraTargetPosition = hitBox.transform.root.Find("CameraTarget").transform.position;
+        Vector3 hitPoint;
+        Vector3 hitNormal;
+        Vector3 hitDirection;
+
+        hitBox.GetContactInfo(from: cameraTargetPosition,
+                              to: collider.transform.position,
+                              out hitPoint, out hitNormal, out hitDirection,
+                              2f);
 
         BoxHitReaction hr = collider.GetComponentInParent<BoxHitReaction>();
         hr?.Hurt(damage, hitPoint, hitNormal, hitDirection);
@@ -70,6 +48,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     {
         hitBox = animator.GetComponent<PlayerController>().weaponHolder.GetComponentInChildren<HitBox>();
         hitBox.SetResponder(this);
+        hitBox.enabledMultipleHits = this.enabledMultipleHits;
         hitBox.StartCheckingCollision();
         hitObjects = new Dictionary<int, int>();
 
@@ -85,6 +64,16 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
         if (0.35f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.45f)
         {
             hitBox.UpdateHitBox();
+        }
+
+        if (0.45f < stateInfo.normalizedTime && !animator.IsInTransition(0))
+        {
+            hitBox.StopCheckingCollision();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C) && stateInfo.normalizedTime >= 0.5f)
+        {
+            animator.SetTrigger("ComboAttack");
         }
 
         //if (stateInfo.normalizedTime > 0.35f)
@@ -103,9 +92,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hitBox.StopCheckingCollision();
-
-        //hitBox.StopCheckingCollision();
+        animator.SetBool("ComboAttack", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

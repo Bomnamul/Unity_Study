@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool isEquipped {
         get
         {
-            return weaponHolder != null && weaponHolder.childCount > 0;
+            return (weaponHolder != null && weaponHolder.childCount > 0) || (bowHolder != null && bowHolder.childCount > 0);
         }
     }
 
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             return null;
         return list[index];
     }
-    void Disarm()
+    void DisarmAxe()
     {
         if (isEquipped)
         {
@@ -150,13 +150,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Equip() // callback function
+    void DisarmBow() // callback function
+    {
+        if (isEquipped)
+        {
+            Transform weapon = bowHolder.GetChild(0);
+            weapon.SetParent(weaponDisarmHolder);
+            weapon.localPosition = new Vector3(0f, 0.2f, -0.3f);
+            weapon.localRotation = Quaternion.Euler(-90f, 0f, 0f);
+            anim.SetInteger("HoldingWeaponID", 0);
+        }
+    }
+
+    void Equip()
     {
         if (isDisarmed)
         {
             Transform weapon = weaponDisarmHolder.GetChild(0);
-            weapon.SetParent(weaponHolder);
-            anim.SetInteger("HoldingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
+            int weaponType = weapon.GetComponent<WeaponType>().weaponId;
+            if (weaponType == 1)
+            {
+                weapon.SetParent(weaponHolder);
+            }
+            else if (weaponType == 2)
+            {
+                weapon.SetParent(bowHolder);
+            }
+
+            weapon.localPosition = Vector3.zero;
+            weapon.localRotation = Quaternion.identity;
+            anim.SetInteger("HoldingWeaponID", weaponType);
         }
     }
 }

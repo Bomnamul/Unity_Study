@@ -19,6 +19,18 @@ public class BoxHitReaction : MonoBehaviour
         GetComponent<Health>().DecreaseHP(damage);
         GameObject fx = Instantiate(hitFXPrefab, hitPoint, Quaternion.identity);
         Destroy(fx, 1.5f);
-        rb?.AddForce(hitDirection * 1f, ForceMode.VelocityChange);
+
+        //rb?.AddForce(hitDirection, ForceMode.VelocityChange); // 둘의 사용법이 미묘하게 다르다
+
+        // 결과가 다르다
+        if (rb != null)
+        {
+            rb.velocity = hitDirection;
+        }
+
+        //if (rb != null)
+        //{
+        //    rb.velocity += hitDirection;
+        //}
     }
 }

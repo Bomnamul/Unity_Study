@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool isEquipped {
         get
         {
-            return (weaponHolder != null && weaponHolder.childCount > 0) || (bowHolder !=null && bowHolder.childCount > 0);
+            return (weaponHolder != null && weaponHolder.childCount > 0) || (bowHolder != null && bowHolder.childCount > 0);
         }
     }
 

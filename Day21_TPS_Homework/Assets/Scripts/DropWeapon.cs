@@ -20,14 +20,31 @@ public class DropWeapon : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Transform weaponHolder = animator.GetComponent<PlayerController>().weaponHolder;
-        Transform weapon = weaponHolder.GetChild(0);
-        foreach(var c in weapon.GetComponents<Collider>())
+        Transform bowHolder = animator.GetComponent<PlayerController>().bowHolder;
+
+        if (weaponHolder.childCount != 0)
         {
-            c.enabled = true;
+            Transform weapon = weaponHolder.GetChild(0);
+            foreach (var c in weapon.GetComponents<Collider>())
+            {
+                c.enabled = true;
+            }
+            weapon.SetParent(null);
+            weapon.GetComponent<Rigidbody>().isKinematic = false;
+            animator.SetInteger("HoldingWeaponID", 0);
         }
-        weapon.SetParent(null);
-        weapon.GetComponent<Rigidbody>().isKinematic = false;
-        animator.SetInteger("HoldingWeaponID", 0);
+
+        if (bowHolder.childCount != 0)
+        {
+            Transform bow = bowHolder.GetChild(0);
+            foreach (var c in bow.GetComponents<Collider>())
+            {
+                c.enabled = true;
+            }
+            bow.SetParent(null);
+            bow.GetComponent<Rigidbody>().isKinematic = false;
+            animator.SetInteger("HoldingWeaponID", 0);
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

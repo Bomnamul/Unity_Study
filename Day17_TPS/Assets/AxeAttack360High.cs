@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
+public class AxeAttack360High : StateMachineBehaviour, IHitBoxResponder
 {
-    //Transform axe;
-
     public int damage = 5;
     public bool enabledMultipleHits = false;
 
@@ -18,7 +16,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     public void CollisionWith(Collider collider, HitBox hitBox)
     {
         HurtBox hurtBox = collider.GetComponent<HurtBox>();
-        
+
         hurtBox.GetHitby(damage); // debugging
         //collider.GetComponentInParent<Health>().DecreaseHP(damage);
 
@@ -27,8 +25,8 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
         Vector3 hitNormal;
         Vector3 hitDirection;
 
-        hitBox.GetContactInfo(from: cameraTargetPosition, 
-                              to: collider.transform.root.transform.position, 
+        hitBox.GetContactInfo(from: cameraTargetPosition,
+                              to: collider.transform.root.transform.position,
                               out hitPoint, out hitNormal, out hitDirection,
                               2f);
 
@@ -66,11 +64,6 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
             hitBox.UpdateHitBox();
         }
 
-        if (Input.GetKeyDown(KeyCode.C) && stateInfo.normalizedTime >= 0.5f)
-        {
-            animator.SetTrigger("ComboAttack");
-        }
-
         //if (stateInfo.normalizedTime > 0.35f)
         //{
         //    hitBox.StartCheckingCollision();
@@ -88,7 +81,6 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         hitBox.StopCheckingCollision();
-        animator.SetBool("ComboAttack", false);
 
         //hitBox.StopCheckingCollision();
     }

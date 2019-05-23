@@ -1270,7 +1270,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2044283694}
   - component: {fileID: 2044283697}
-  - component: {fileID: 2044283696}
   - component: {fileID: 2044283695}
   m_Layer: 9
   m_Name: HitBox
@@ -1310,26 +1309,12 @@ MonoBehaviour:
     m_Bits: 1024
   hitBoxes:
   - {fileID: 2044283697}
-  - {fileID: 2044283696}
   inactiveColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.7529412}
   collisionOpenColor: {r: 0, g: 1, b: 0, a: 0.7529412}
   collidingColor: {r: 1, g: 0, b: 1, a: 0.7529412}
   drawGizmo: 1
   updateInEditor: 0
   state: 0
---- !u!135 &2044283696
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044283693}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Center: {x: 0.5, y: 0, z: 0.8}
 --- !u!65 &2044283697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1341,8 +1326,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.29326272, y: 0.19679642, z: 0.7900578}
-  m_Center: {x: 0.3198899, y: -0.010776013, z: 0.7329137}
+  m_Size: {x: 0.53141916, y: 0.19679642, z: 0.8324076}
+  m_Center: {x: 0.45703608, y: -0.010776013, z: 0.71173877}
 --- !u!1001 &2216176070773656380
 PrefabInstance:
   m_ObjectHideFlags: 0

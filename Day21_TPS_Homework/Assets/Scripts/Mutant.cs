@@ -42,6 +42,7 @@ public class Mutant : MonoBehaviour
         if (hb.state == ColliderState.Colliding)
         {
             anim.SetTrigger("Hurt");
+            print("hurt");
         }
     }
 }

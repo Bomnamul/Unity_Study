@@ -26,11 +26,22 @@ public class NoWeaponLocomotionBT : StateMachineBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && !pc.isEquipped && !animator.IsInTransition(0)) // !animator.IsInTransition: Transition 구간에선 key 입력을 안 받음
         {
+            GameObject weapon = pc.GetNearestWeaponIn(1.5f, 180f, "RightWeapon");
+            if (weapon == null)
+            {
+                Debug.Log("No weapon");
+                return;
+            }
+
+            animator.SetInteger("HandlingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
             animator.SetTrigger("PickupWeapon");
         }
 
         if (Input.GetKeyDown(KeyCode.X) && pc.isDisarmed && !pc.isEquipped && !animator.IsInTransition(0))
         {
+            Transform weaponDisarmHolder = animator.GetComponent<PlayerController>().weaponDisarmHolder;
+            Transform weapon = weaponDisarmHolder.GetChild(0);
+            animator.SetInteger("HandlingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
             animator.SetTrigger("Equip");
         }
     }

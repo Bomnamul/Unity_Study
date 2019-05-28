@@ -17,7 +17,7 @@ TagManager:
   - Ground
   - HitBox
   - HurtBox
-  - 
+  - HurtBoxPlayer
   - 
   - 
   - 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MobController : MonoBehaviour
 {
     public Transform player;
+    public HitBox leftHandHitBox;
+    public HitBox jumpAttackHitBox;
 
     Animator anim;
 

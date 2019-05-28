@@ -9,6 +9,7 @@ public class BoxHitReaction : MonoBehaviour
     Rigidbody rb;
     Animator anim;
     MobController mc;
+    PlayerController pc;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class BoxHitReaction : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         mc = GetComponent<MobController>();
+        pc = GetComponent<PlayerController>();
     }
 
     public void Hurt(int damage, Vector3 hitPoint, Vector3 hitNormal, Vector3 hitDirection)

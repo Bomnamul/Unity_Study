@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
     }
     void Disarm()
     {
-        if (isEquipped)
+        if (isEquipped && !anim.IsInTransition(0))
         {
             Transform weapon = weaponHolder.GetChild(0);
             weapon.SetParent(weaponDisarmHolder);
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
     void Equip() // callback function
     {
-        if (isDisarmed)
+        if (isDisarmed && !anim.IsInTransition(0))
         {
             Transform weapon = weaponDisarmHolder.GetChild(0);
             weapon.SetParent(weaponHolder);

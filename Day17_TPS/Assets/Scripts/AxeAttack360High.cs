@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
+public class AxeAttack360High : StateMachineBehaviour, IHitBoxResponder
 {
-    //Transform axe;
-
     public int damage = 5;
     public bool enabledMultipleHits = false;
 
     HitBox hitBox;
+    bool entered;
 
     //HitBox hitBox;
     //bool isDamaged = false;
@@ -17,7 +16,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     public void CollisionWith(Collider collider, HitBox hitBox)
     {
         HurtBox hurtBox = collider.GetComponent<HurtBox>();
-        
+
         hurtBox.GetHitby(damage); // debugging
         //collider.GetComponentInParent<Health>().DecreaseHP(damage);
 
@@ -26,13 +25,13 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
         Vector3 hitNormal;
         Vector3 hitDirection;
 
-        hitBox.GetContactInfo(from: cameraTargetPosition, 
-                              to: collider.transform.root.transform.position, 
+        hitBox.GetContactInfo(from: cameraTargetPosition,
+                              to: collider.transform.root.transform.position,
                               out hitPoint, out hitNormal, out hitDirection,
                               2f);
 
         BoxHitReaction hr = collider.GetComponentInParent<BoxHitReaction>();
-        hr?.Hurt(damage, hitPoint, hitNormal, hitDirection);
+        hr?.Hurt(damage, hitPoint, hitNormal, hitDirection, ReactionType.Head);
 
         //if (isDamaged == false)
         //{
@@ -49,6 +48,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
         hitBox.SetResponder(this);
         hitBox.enabledMultipleHits = this.enabledMultipleHits;
         hitBox.StartCheckingCollision();
+        entered = false;
 
         //isDamaged = false;
         //axe = animator.GetComponent<PlayerController>().weaponHolder.GetChild(0);
@@ -59,19 +59,17 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (0.35f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.45f)
+        if (0.15f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.45f)
         {
             hitBox.UpdateHitBox();
         }
 
-        if (0.45f < stateInfo.normalizedTime && !animator.IsInTransition(0))
+        if (!entered && stateInfo.normalizedTime >= 0.15f)
         {
-            hitBox.StopCheckingCollision();
-        }
-
-        if (Input.GetKeyDown(KeyCode.C) && stateInfo.normalizedTime >= 0.5f)
-        {
-            animator.SetTrigger("ComboAttack");
+            CameraShake cs = Camera.main.GetComponent<CameraShake>();
+            cs.enabled = true;
+            cs.StartCoroutine(cs.Shake(0.05f, 0.5f));
+            entered = true;
         }
 
         //if (stateInfo.normalizedTime > 0.35f)
@@ -90,7 +88,9 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("ComboAttack", false);
+        hitBox.StopCheckingCollision();
+
+        //hitBox.StopCheckingCollision();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpAttack : StateMachineBehaviour, IHitBoxResponder
+public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
 {
     //Transform axe;
 
     public int damage = 5;
     public bool enabledMultipleHits = false;
-    //public GameObject hb; // MonoBehaviour가 아니라 못씀
 
     HitBox hitBox;
 
@@ -18,22 +17,22 @@ public class JumpAttack : StateMachineBehaviour, IHitBoxResponder
     public void CollisionWith(Collider collider, HitBox hitBox)
     {
         HurtBox hurtBox = collider.GetComponent<HurtBox>();
-
+        
         hurtBox.GetHitby(damage); // debugging
         //collider.GetComponentInParent<Health>().DecreaseHP(damage);
 
-        Vector3 from = hitBox.transform.position;
+        Vector3 cameraTargetPosition = hitBox.transform.root.Find("CameraTarget").transform.position;
         Vector3 hitPoint;
         Vector3 hitNormal;
         Vector3 hitDirection;
 
-        hitBox.GetContactInfo(from: from,
-                              to: collider.ClosestPoint(from),
+        hitBox.GetContactInfo(from: cameraTargetPosition, 
+                              to: collider.transform.root.transform.position, 
                               out hitPoint, out hitNormal, out hitDirection,
                               2f);
 
         BoxHitReaction hr = collider.GetComponentInParent<BoxHitReaction>();
-        hr?.Hurt(damage, hitPoint, hitNormal, hitDirection);
+        hr?.Hurt(damage, hitPoint, hitNormal, hitDirection, ReactionType.Body);
 
         //if (isDamaged == false)
         //{
@@ -46,7 +45,7 @@ public class JumpAttack : StateMachineBehaviour, IHitBoxResponder
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hitBox = animator.GetComponent<MobController>().jumpAttackHitBox;
+        hitBox = animator.GetComponent<PlayerController>().weaponHolder.GetComponentInChildren<HitBox>();
         hitBox.SetResponder(this);
         hitBox.enabledMultipleHits = this.enabledMultipleHits;
         hitBox.StartCheckingCollision();
@@ -60,28 +59,38 @@ public class JumpAttack : StateMachineBehaviour, IHitBoxResponder
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (0.56f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.80f)
+        if (0.35f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.45f)
         {
             hitBox.UpdateHitBox();
         }
+
+        if (0.45f < stateInfo.normalizedTime && !animator.IsInTransition(0))
+        {
+            hitBox.StopCheckingCollision();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C) && stateInfo.normalizedTime >= 0.5f)
+        {
+            animator.SetTrigger("ComboAttack");
+        }
+
+        //if (stateInfo.normalizedTime > 0.35f)
+        //{
+        //    hitBox.StartCheckingCollision();
+        //}
+
+        //if (stateInfo.normalizedTime > 0.5f)
+        //{
+        //    hitBox.StopCheckingCollision();
+        //}
+
+        //hitBox.UpdateHitBox();
     }
-
-    //if (stateInfo.normalizedTime > 0.35f)
-    //{
-    //    hitBox.StartCheckingCollision();
-    //}
-
-    //if (stateInfo.normalizedTime > 0.5f)
-    //{
-    //    hitBox.StopCheckingCollision();
-    //}
-
-    //hitBox.UpdateHitBox();
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hitBox.StopCheckingCollision();
+        animator.SetBool("ComboAttack", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

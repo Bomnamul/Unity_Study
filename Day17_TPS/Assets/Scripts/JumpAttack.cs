@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipingAttack : StateMachineBehaviour, IHitBoxResponder
+public class JumpAttack : StateMachineBehaviour, IHitBoxResponder
 {
     //Transform axe;
 
@@ -11,6 +11,7 @@ public class SwipingAttack : StateMachineBehaviour, IHitBoxResponder
     //public GameObject hb; // MonoBehaviour가 아니라 못씀
 
     HitBox hitBox;
+    bool entered;
 
     //HitBox hitBox;
     //bool isDamaged = false;
@@ -33,7 +34,7 @@ public class SwipingAttack : StateMachineBehaviour, IHitBoxResponder
                               2f);
 
         BoxHitReaction hr = collider.GetComponentInParent<BoxHitReaction>();
-        hr?.Hurt(damage, hitPoint, hitNormal, hitDirection);
+        hr?.Hurt(damage, hitPoint, hitNormal, hitDirection, ReactionType.Stun);
 
         //if (isDamaged == false)
         //{
@@ -46,10 +47,11 @@ public class SwipingAttack : StateMachineBehaviour, IHitBoxResponder
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hitBox = animator.GetComponent<MobController>().leftHandHitBox;
+        hitBox = animator.GetComponent<MobController>().jumpAttackHitBox;
         hitBox.SetResponder(this);
         hitBox.enabledMultipleHits = this.enabledMultipleHits;
         hitBox.StartCheckingCollision();
+        entered = false;
 
         //isDamaged = false;
         //axe = animator.GetComponent<PlayerController>().weaponHolder.GetChild(0);
@@ -60,9 +62,20 @@ public class SwipingAttack : StateMachineBehaviour, IHitBoxResponder
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (0.51f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.62f)
+        if (0.56f <= stateInfo.normalizedTime && stateInfo.normalizedTime <= 0.80f)
         {
             hitBox.UpdateHitBox();
+        }
+        if (!entered && stateInfo.normalizedTime >= 0.6f)
+        {
+            MobController mc = animator.GetComponent<MobController>();
+            var fx = Instantiate(mc.jumpAttackFX, mc.transform.position, Quaternion.identity);
+            Destroy(fx, 2f);
+
+            CameraShake cs = Camera.main.GetComponent<CameraShake>();
+            cs.enabled = true;
+            cs.StartCoroutine(cs.Shake(0.1f, 0.4f));
+            entered = !entered;
         }
     }
 
@@ -83,7 +96,7 @@ public class SwipingAttack : StateMachineBehaviour, IHitBoxResponder
     {
         hitBox.StopCheckingCollision();
     }
-        
+
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

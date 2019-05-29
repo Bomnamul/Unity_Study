@@ -7,6 +7,7 @@ public class MobController : MonoBehaviour
     public Transform player;
     public HitBox leftHandHitBox;
     public HitBox jumpAttackHitBox;
+    public GameObject jumpAttackFX;
 
     Animator anim;
 

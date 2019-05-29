@@ -543,8 +543,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.19, y: 0.29, z: 1.26}
-  m_Center: {x: 0.113, y: 0.09, z: -0.048}
+  m_Size: {x: 1.614252, y: 0.29000002, z: 1.7339133}
+  m_Center: {x: 0.009558281, y: 0.090000026, z: 0.1889565}
 --- !u!4 &442823284
 Transform:
   m_ObjectHideFlags: 0
@@ -558,6 +558,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 907111439}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &634329883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634329884}
+  m_Layer: 0
+  m_Name: StunFXPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &634329884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634329883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1799425295}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -1241,6 +1271,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1329,6 +1360,18 @@ MonoBehaviour:
   rotationSpeed: 180
   zoomSpeed: 120
   cameraAngleX: 15
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d0ba658f831d64393862c502783512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1065175086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +2033,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFXPrefab: {fileID: 3056815493461706267, guid: bc10edbb885ff3b4694073e6e8f947a6,
     type: 3}
+  stunFXPrefab: {fileID: 4578592269412716875, guid: 32b07c50b6c9fc741a8887f2fbfa38cd,
+    type: 3}
+  stunFXPos: {fileID: 634329884}
 --- !u!114 &1799425300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,6 +2113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFXPrefab: {fileID: 3056815493461706267, guid: bc10edbb885ff3b4694073e6e8f947a6,
     type: 3}
+  stunFXPrefab: {fileID: 0}
+  stunFXPos: {fileID: 0}
 --- !u!4 &1805374567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 7d94dc6872e5c8949be1b21fa904ff83,
@@ -2088,6 +2136,8 @@ MonoBehaviour:
   player: {fileID: 1799425295}
   leftHandHitBox: {fileID: 200890494}
   jumpAttackHitBox: {fileID: 442823282}
+  jumpAttackFX: {fileID: 5484906599975726165, guid: 9316923a871a9834ca6ade1df508c58f,
+    type: 3}
 --- !u!4 &1941714474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6671403403487072536, guid: 7d94dc6872e5c8949be1b21fa904ff83,

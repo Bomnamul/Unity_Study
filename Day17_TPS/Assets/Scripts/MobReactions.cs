@@ -39,19 +39,19 @@ public class MobReactions : StateMachineBehaviour
     override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
     {
         Debug.Log("SMEnter");
-        int r = 0; // Random.Range(0, 3);
-        switch (r)
-        {
-            case 0:
-                animator.SetTrigger("Reaction1");
-                break;
-            case 1:
-                animator.SetTrigger("Reaction2");
-                break;
-            case 2:
-                animator.SetTrigger("Reaction3");
-                break;
-        }
+        //int r = 0; // Random.Range(0, 3);
+        //switch (r)
+        //{
+        //    case 0:
+        //        animator.SetTrigger("Reaction1");
+        //        break;
+        //    case 1:
+        //        animator.SetTrigger("Reaction2");
+        //        break;
+        //    case 2:
+        //        animator.SetTrigger("Reaction3");
+        //        break;
+        //}
     }
 
     // OnStateMachineExit is called when exiting a state machine via its Exit Node

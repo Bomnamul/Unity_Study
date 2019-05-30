@@ -167,4 +167,16 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("HoldingWeaponID", weapon.GetComponent<WeaponType>().weaponId);
         }
     }
+
+    public void TrailEnable()
+    {
+        GameObject trail = weaponHolder.GetChild(0).GetChild(2).GetChild(0).gameObject;
+        trail.SetActive(true);
+    }
+
+    public void TrailDisable()
+    {
+        GameObject trail = weaponHolder.GetChild(0).GetChild(2).GetChild(0).gameObject;
+        trail.SetActive(false);
+    }
 }

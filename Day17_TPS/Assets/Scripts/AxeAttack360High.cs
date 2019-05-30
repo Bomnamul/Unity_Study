@@ -9,6 +9,7 @@ public class AxeAttack360High : StateMachineBehaviour, IHitBoxResponder
 
     HitBox hitBox;
     bool entered;
+    PlayerController pc;
 
     //HitBox hitBox;
     //bool isDamaged = false;
@@ -50,6 +51,9 @@ public class AxeAttack360High : StateMachineBehaviour, IHitBoxResponder
         hitBox.StartCheckingCollision();
         entered = false;
 
+        pc = animator.GetComponent<PlayerController>();
+        pc.TrailEnable();
+
         //isDamaged = false;
         //axe = animator.GetComponent<PlayerController>().weaponHolder.GetChild(0);
         //hitBox = axe.GetComponentInChildren<HitBox>();
@@ -89,7 +93,10 @@ public class AxeAttack360High : StateMachineBehaviour, IHitBoxResponder
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         hitBox.StopCheckingCollision();
-
+        if (!animator.IsInTransition(0))
+        {
+            pc.TrailDisable();
+        }
         //hitBox.StopCheckingCollision();
     }
 

@@ -10,6 +10,7 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     public bool enabledMultipleHits = false;
 
     HitBox hitBox;
+    PlayerController pc;
 
     //HitBox hitBox;
     //bool isDamaged = false;
@@ -49,6 +50,9 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
         hitBox.SetResponder(this);
         hitBox.enabledMultipleHits = this.enabledMultipleHits;
         hitBox.StartCheckingCollision();
+
+        pc = animator.GetComponent<PlayerController>();
+        pc.TrailEnable();
 
         //isDamaged = false;
         //axe = animator.GetComponent<PlayerController>().weaponHolder.GetChild(0);
@@ -91,6 +95,10 @@ public class AxeAttackHorizontal : StateMachineBehaviour, IHitBoxResponder
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("ComboAttack", false);
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack 360 High"))
+        {
+            pc.TrailDisable();
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

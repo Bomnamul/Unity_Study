@@ -149,7 +149,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Distance
+    m_ConditionEvent: HorizontalDistance
     m_EventTreshold: 6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4543432926898946011}
@@ -279,7 +279,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Distance
+    m_ConditionEvent: HorizontalDistance
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3035491541197839426}
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9fefccf1a13644ba596cd3565493b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 2
+  chaseSpeed: 3
 --- !u!1109 &-3269656028748771377
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -432,8 +432,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Distance
-    m_EventTreshold: 5
+    m_ConditionEvent: HorizontalDistance
+    m_EventTreshold: 3
   - m_ConditionMode: 4
     m_ConditionEvent: Angle
     m_EventTreshold: 30
@@ -530,7 +530,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Distance
+  - m_Name: HorizontalDistance
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -877,8 +877,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Distance
-    m_EventTreshold: 1.5
+    m_ConditionEvent: HorizontalDistance
+    m_EventTreshold: 1.8
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4856807477503769120}
   m_Solo: 0
@@ -949,7 +949,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 4
-    m_ConditionEvent: Distance
+    m_ConditionEvent: HorizontalDistance
     m_EventTreshold: 5
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1533843632248519878}

@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
                                       0.2f,
                                       -transform.up,
                                       out hit,
-                                      0.2f,
+                                      1f,
                                       groundMask,
                                       QueryTriggerInteraction.Ignore);
 

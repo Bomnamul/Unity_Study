@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZObjectPools;
 
 public class Gun : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Gun : MonoBehaviour
     public GameObject impactFX;
     public GameObject bulletHolePrefab;
     //public GameObject holdPos; // 집은 물건의 위치
+    public EZObjectPool shellPool;
+
+    GameObject shell;
 
     Camera fpsCamera;
     float nextTimeToFire = 0f;
@@ -187,8 +191,11 @@ public class Gun : MonoBehaviour
 
     private void MakeShell()
     {
-        GameObject clone = Instantiate(shellPrefab, shellEjection);
-        clone.transform.parent = null;
+        if (shellPool.TryGetNextObject(Vector3.zero, Quaternion.identity, out shell))
+        {
+            print("AvailableObjectCount: " + shellPool.AvailableObjectCount());
+            print("ActiveObjectCount: " + shellPool.ActiveObjectCount());
+        }
     }
 
     //IEnumerator ShellRoutine()

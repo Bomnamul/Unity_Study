@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -943,7 +943,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!136 &320180040
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3220,6 +3220,20 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.75}
+--- !u!114 &1166030510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166030504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c94c4383b40244881db7587571175f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMin: 50
+  forceMax: 200
 --- !u!1 &1173695251
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,6 +4194,7 @@ MonoBehaviour:
     type: 3}
   bulletHolePrefab: {fileID: 1872493976952616204, guid: 137f5316f6e48ad47b904472cc0ec292,
     type: 3}
+  shellPool: {fileID: 2000976841}
 --- !u!82 &1617398861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5249,6 +5264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000976840}
+  - component: {fileID: 2000976841}
   m_Layer: 9
   m_Name: ShellEjection
   m_TagString: Untagged
@@ -5270,6 +5286,26 @@ Transform:
   m_Father: {fileID: 1617398856}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18}
+--- !u!114 &2000976841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000976839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2442016f8486197449f04daf3f9ca389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Template: {fileID: 8269115998920461869, guid: 9a131fe5bf35da94c960cb9b9d8319f8,
+    type: 3}
+  PoolName: Shell
+  ObjectList: []
+  AutoResize: 0
+  PoolSize: 40
+  InstantiateOnAwake: 1
+  Shared: 0
 --- !u!1 &2005989715
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,19 +12,19 @@ public class Shell : MonoBehaviour
     float fadeTime = 2f;
     Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        float force = UnityEngine.Random.Range(forceMin, forceMax);
-        rb.AddForce(transform.right * force);
-        rb.AddTorque(UnityEngine.Random.insideUnitSphere * force);
-        //Destroy(gameObject, 100f);
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+        //    rb = GetComponent<Rigidbody>();
+        //    float force = UnityEngine.Random.Range(forceMin, forceMax);
+        //    rb.AddForce(transform.right * force);
+        //    rb.AddTorque(UnityEngine.Random.insideUnitSphere * force);
+        //    //Destroy(gameObject, 100f);
 
-        StartCoroutine(Fade());
-    }
+        //    StartCoroutine(Fade());
+    //}
 
-    IEnumerator Fade()
+IEnumerator Fade()
     {
         yield return new WaitForSeconds(lifeTime);
 
@@ -39,6 +39,28 @@ public class Shell : MonoBehaviour
             mat.color = Color.Lerp(initialColor, Color.clear, percent);
             yield return null;
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        transform.localScale = new Vector3(1f, 1f, 1f);
+        Material mat = GetComponent<Renderer>().material;
+        mat.color = Color.white;
+
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        float force = UnityEngine.Random.Range(forceMin, forceMax);
+        rb.AddForce(transform.right * force);
+        rb.AddTorque(UnityEngine.Random.insideUnitSphere * force);
+
+        StartCoroutine(Fade());
+    }
+
+    private void OnDisable()
+    {
+        
     }
 }

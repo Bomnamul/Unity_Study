@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HealthBar.unity
+    guid: e94780ae0ac4a6043ba4d75f3c2f4a0b
   m_configObjects: {}

@@ -9,26 +9,44 @@ public class Health : MonoBehaviour
     public Image HealthBar;
     public Image HealthGlow;
 
-    public void UpdateHealthBar(float currentHealth, float maxHealth)
+    float timer = 0f;
+
+    public void UpdateHealthBar(float prevHealth, float currentHealth, float maxHealth)
     {
-        HealthBar.fillAmount = currentHealth / maxHealth;
+        StartCoroutine(Glow(prevHealth, currentHealth, maxHealth));
     }
 
-    public void UpdateHealthBarGlow(float currentHealth, float maxHealth)
+    IEnumerator Glow(float prevHealth, float currentHealth, float maxHealth)
     {
-        StartCoroutine(Glow(currentHealth, maxHealth));
-    }
-
-    IEnumerator Glow(float currentHealth, float maxHealth)
-    {
-        float current = currentHealth;
+        Debug.Log("Coroutine Worked");
         HealthGlow.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        while (current <= maxHealth)
+        if (prevHealth > currentHealth)
         {
-            HealthGlow.fillAmount = current;
-            current++;
-            yield return null;
+            Debug.Log("Damaged");
+            HealthBar.fillAmount = currentHealth / maxHealth;
+            HealthGlow.fillAmount = prevHealth / maxHealth;
+            yield return new WaitForSeconds(0.5f);
+            while (HealthBar.fillAmount != HealthGlow.fillAmount)
+            {
+                timer += Time.deltaTime / 0.25f;
+                HealthGlow.fillAmount = Mathf.Lerp(prevHealth / maxHealth, currentHealth / maxHealth, timer);
+                yield return null;
+            }
         }
+        else if(prevHealth < currentHealth)
+        {
+            Debug.Log("Healed");
+            HealthGlow.fillAmount = currentHealth / maxHealth;
+            HealthBar.fillAmount = prevHealth / maxHealth;
+            yield return new WaitForSeconds(0.5f);
+            while (HealthBar.fillAmount != HealthGlow.fillAmount)
+            {
+                timer += Time.deltaTime / 0.25f;
+                HealthBar.fillAmount = Mathf.Lerp(prevHealth / maxHealth, currentHealth / maxHealth, timer);
+                yield return null;
+            }
+        }
+        timer = 0f;
+        HealthGlow.gameObject.SetActive(false);
     }
 }

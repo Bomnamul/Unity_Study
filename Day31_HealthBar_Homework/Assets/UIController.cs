@@ -9,14 +9,16 @@ public class UIController : MonoBehaviour
     public Health Heart;
     public Button healButton;
     public Button damageButton;
+    public float damage;
+    public float heal;
 
     int uiTimeStamp = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        damageButton.onClick.AddListener(() => GameDataManager.Instance.TakeDamage(25f));
-        healButton.onClick.AddListener(() => GameDataManager.Instance.Heal(50f));
+        damageButton.onClick.AddListener(() => GameDataManager.Instance.TakeDamage(damage));
+        healButton.onClick.AddListener(() => GameDataManager.Instance.Heal(heal));
     }
 
     void Update() // MVC (Model View Controller)
@@ -25,10 +27,10 @@ public class UIController : MonoBehaviour
         if (timeStamp != uiTimeStamp) // Polling
         {
             uiTimeStamp = timeStamp;
+            float prevHealth = GameDataManager.Instance.GetPrevHealth();
             float currentHealth = GameDataManager.Instance.GetCurrentHealth();
             float maxHealth = GameDataManager.Instance.GetMaxHealth();
-            Heart.UpdateHealthBar(currentHealth, maxHealth);
-            Heart.UpdateHealthBarGlow(currentHealth, maxHealth);
+            Heart.UpdateHealthBar(prevHealth, currentHealth, maxHealth);
         }
     }
 }

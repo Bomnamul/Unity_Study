@@ -49,6 +49,10 @@ public class GameFlow : MonoBehaviour
         {
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         }
+        else
+        {
+            player.GetComponent<PlayerFSM>().onPortal = false;
+        }
         progressBar.parent.gameObject.SetActive(false);
     }
 }

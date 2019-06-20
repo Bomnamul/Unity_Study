@@ -11,6 +11,8 @@ public class NextStage : MonoBehaviour
         if (collision.tag == "Player")
         {
             SceneMgr.instance.LoadScene(nextStage);
+            transform.GetComponent<Animator>().SetTrigger("OpenDoor");
+            collision.GetComponent<PlayerFSM>().onPortal = true;
         }
     }
 }

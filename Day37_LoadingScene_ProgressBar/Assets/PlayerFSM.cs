@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerFSM : MonoBehaviour
 {
     public float moveSpeed = 4;
+    public bool onPortal = false;
 
     public enum State { Entry = -1, Idle, Walk, Attack, HammerAttack }
     public State state = State.Idle;
@@ -116,9 +117,13 @@ public class PlayerFSM : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         Vector3 heading = new Vector3(h, v, 0).normalized;
         Vector3 movement = heading * moveSpeed * Time.deltaTime;
-        transform.position += movement;
 
-        UpdateAnimation(heading);
+        if (!onPortal)
+        {
+            transform.position += movement;
+
+            UpdateAnimation(heading);
+        }
 
         if (h != 0 || v != 0)
         {

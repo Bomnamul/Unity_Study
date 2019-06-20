@@ -13,7 +13,7 @@ public class HandlingJson : MonoBehaviour
     void Start()
     {
         //pathJson = Application.persistentDataPath + "/gameScore.json";
-        pathJson = Application.persistentDataPath + "/jsonData.txt";
+        pathJson = Application.persistentDataPath + "/jsonData.json";
         print(pathJson);
 
         StartCoroutine(GetJsonFromURL());
@@ -100,7 +100,13 @@ public class JsonData
 
     public override string ToString()
     {
-        return "" + contacts;
+        string s = string.Empty;
+        foreach(var c in contacts)
+        {
+            s += c;
+        }
+
+        return s;
     }
 }
 
@@ -112,10 +118,25 @@ public class Contact
     public string email;
     public string address;
     public string gender;
-    public object phone;
-    //public string mobile;
-    //public string home;
-    //public string office;
+    public Phone phone;
+
+    public override string ToString()
+    {
+        return id;
+    }
+}
+
+[Serializable]
+public class Phone
+{
+    public string mobile;
+    public string home;
+    public string office;
+
+    public override string ToString()
+    {
+        return mobile;
+    }
 }
 
 [Serializable]    // Json 자체적으로는 어떻게 Serialize 할지 모르기에 명시해야함, Map은 Serialize 안됨 (list type으로 바꿔쓰던지 해야함)

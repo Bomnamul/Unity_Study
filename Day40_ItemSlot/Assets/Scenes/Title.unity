@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 54506396}
   - component: {fileID: 54506395}
   - component: {fileID: 54506394}
+  - component: {fileID: 54506397}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -285,6 +286,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54506392}
   m_CullTransparentMesh: 0
+--- !u!114 &54506397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54506392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &113913002
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +446,7 @@ GameObject:
   - component: {fileID: 337355882}
   - component: {fileID: 337355881}
   - component: {fileID: 337355880}
+  - component: {fileID: 337355883}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -542,6 +556,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337355878}
   m_CullTransparentMesh: 0
+--- !u!114 &337355883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337355878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358141112
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +657,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 3
+  xButton: {fileID: 54506394}
+  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
+    type: 3}
 --- !u!1 &390168985
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +829,7 @@ GameObject:
   - component: {fileID: 557172419}
   - component: {fileID: 557172418}
   - component: {fileID: 557172417}
+  - component: {fileID: 557172420}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -909,6 +939,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557172415}
   m_CullTransparentMesh: 0
+--- !u!114 &557172420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557172415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &627021098
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +963,7 @@ GameObject:
   - component: {fileID: 627021102}
   - component: {fileID: 627021101}
   - component: {fileID: 627021100}
+  - component: {fileID: 627021103}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -1030,6 +1073,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627021098}
   m_CullTransparentMesh: 0
+--- !u!114 &627021103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627021098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &674913211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 1
+  xButton: {fileID: 337355880}
+  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
+    type: 3}
 --- !u!1 &896935079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,6 +1345,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 2
+  xButton: {fileID: 627021100}
+  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
+    type: 3}
 --- !u!1 &1237382905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,6 +1742,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 0
+  xButton: {fileID: 557172417}
+  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
+    type: 3}
 --- !u!1 &1789933156
 GameObject:
   m_ObjectHideFlags: 0

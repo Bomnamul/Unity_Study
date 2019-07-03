@@ -24,5 +24,7 @@ public class StartStage : MonoBehaviour
         {
             player.transform.position = transform.position;
         }
+
+        UIController.instance.bag.Show();
     }
 }

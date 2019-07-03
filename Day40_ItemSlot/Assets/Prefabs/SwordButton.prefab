@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 7858820268888751494}
   - component: {fileID: 7858820268888751495}
   - component: {fileID: 7858820268888751496}
+  - component: {fileID: 1507115988732055620}
+  - component: {fileID: 7656997095036680139}
   m_Layer: 5
-  m_Name: HealthButton
+  m_Name: SwordButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: -6174568118843670042, guid: 68ceb04d89b884342847a7bc2e6666da,
+  m_Sprite: {fileID: -5208233660972903108, guid: 68ceb04d89b884342847a7bc2e6666da,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -118,6 +120,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7858820268888751495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7656997095036680139}
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1507115988732055620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858820268888751498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cdd44b9423f84ead64373e2dd6d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 8736692233981635792, guid: 1e04fd7447070da4fb954eb3e4b100ac,
+    type: 3}
+--- !u!114 &7656997095036680139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858820268888751498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf53328020fafd647a805d0444f4c30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

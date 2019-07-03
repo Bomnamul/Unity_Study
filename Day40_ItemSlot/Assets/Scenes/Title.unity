@@ -120,50 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &29432924
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 29432926}
-  - component: {fileID: 29432925}
-  m_Layer: 0
-  m_Name: SceneMgr
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &29432925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29432924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949db536f5a4aa44085869335bfd735f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prevScene: 
---- !u!4 &29432926
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29432924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &54506392
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +132,6 @@ GameObject:
   - component: {fileID: 54506396}
   - component: {fileID: 54506395}
   - component: {fileID: 54506394}
-  - component: {fileID: 54506397}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -245,7 +200,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 54506395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 358141116}
+        m_MethodName: Drop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &54506395
@@ -286,18 +252,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54506392}
   m_CullTransparentMesh: 0
---- !u!114 &54506397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54506392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &113913002
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +400,6 @@ GameObject:
   - component: {fileID: 337355882}
   - component: {fileID: 337355881}
   - component: {fileID: 337355880}
-  - component: {fileID: 337355883}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -515,7 +468,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 337355881}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 885389075}
+        m_MethodName: Drop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &337355881
@@ -556,18 +520,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337355878}
   m_CullTransparentMesh: 0
---- !u!114 &337355883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337355878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &358141112
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,9 +609,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 3
-  xButton: {fileID: 54506394}
-  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
-    type: 3}
 --- !u!1 &390168985
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +778,6 @@ GameObject:
   - component: {fileID: 557172419}
   - component: {fileID: 557172418}
   - component: {fileID: 557172417}
-  - component: {fileID: 557172420}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -898,7 +846,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 557172418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1696894975}
+        m_MethodName: Drop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &557172418
@@ -939,18 +898,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557172415}
   m_CullTransparentMesh: 0
---- !u!114 &557172420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557172415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &627021098
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,7 +910,6 @@ GameObject:
   - component: {fileID: 627021102}
   - component: {fileID: 627021101}
   - component: {fileID: 627021100}
-  - component: {fileID: 627021103}
   m_Layer: 5
   m_Name: X Button
   m_TagString: Untagged
@@ -1032,7 +978,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 627021101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 896935083}
+        m_MethodName: Drop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &627021101
@@ -1073,18 +1030,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627021098}
   m_CullTransparentMesh: 0
---- !u!114 &627021103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627021098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252a28a82aad364429db60729f71856c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &674913211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1041,7 @@ GameObject:
   - component: {fileID: 674913212}
   - component: {fileID: 674913213}
   - component: {fileID: 674913214}
+  - component: {fileID: 674913215}
   m_Layer: 5
   m_Name: Bag
   m_TagString: Untagged
@@ -1164,6 +1110,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fbde32b10006c40bb42c8af568be57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &674913215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674913211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b28b3c0fc9f0d4197e3b6efa627266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: []
 --- !u!1 &885389071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,9 +1212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 1
-  xButton: {fileID: 337355880}
-  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
-    type: 3}
 --- !u!1 &896935079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,9 +1301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 2
-  xButton: {fileID: 627021100}
-  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
-    type: 3}
 --- !u!1 &1237382905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,13 +1349,14 @@ GameObject:
   - component: {fileID: 1318995415}
   - component: {fileID: 1318995417}
   - component: {fileID: 1318995416}
+  - component: {fileID: 1318995418}
   m_Layer: 5
   m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1318995415
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1416,7 +1370,7 @@ RectTransform:
   m_Children:
   - {fileID: 2025334438}
   m_Father: {fileID: 1789933157}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1460,6 +1414,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318995414}
   m_CullTransparentMesh: 0
+--- !u!114 &1318995418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318995414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec4d96add20d8b498c0a1956dd8a9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1375284209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1375284211}
+  - component: {fileID: 1375284210}
+  m_Layer: 0
+  m_Name: SceneMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1375284210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375284209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949db536f5a4aa44085869335bfd735f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevScene: 
+--- !u!4 &1375284211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375284209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0493393, y: 0.60649353, z: -1.3378906}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1600701259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1534,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1789933157}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601156029
 GameObject:
@@ -1536,6 +1546,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1601156030}
   - component: {fileID: 1601156031}
+  - component: {fileID: 1601156032}
+  - component: {fileID: 1601156034}
   m_Layer: 0
   m_Name: GameFlow
   m_TagString: Untagged
@@ -1574,6 +1586,37 @@ MonoBehaviour:
     type: 3}
   progressBar: {fileID: 2025334438}
   player: {fileID: 0}
+--- !u!114 &1601156032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601156029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b31effbc2e5854383ff84861f97174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 1318995418}
+  bag: {fileID: 674913214}
+--- !u!114 &1601156034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601156029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb9494fbf80e5b408f0055209918275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: b01386592c9421c49a91150e28faf55e, type: 2}
+  - {fileID: 11400000, guid: 0e7ccba0aedd93f4eab8f7c711790d8e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1621631366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,9 +1785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotId: 0
-  xButton: {fileID: 557172417}
-  healthPotion: {fileID: 8736692233981635792, guid: 9bf095fd1c788c143b39b58fa467f385,
-    type: 3}
 --- !u!1 &1789933156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,8 +1815,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1318995415}
   - {fileID: 1600701262}
+  - {fileID: 1318995415}
   - {fileID: 674913212}
   m_Father: {fileID: 1601156030}
   m_RootOrder: 0

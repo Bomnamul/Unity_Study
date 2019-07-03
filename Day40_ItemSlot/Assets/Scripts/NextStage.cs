@@ -14,6 +14,7 @@ public class NextStage : MonoBehaviour
             transform.GetChild(0).DOLocalMoveX(-1, 1);  // Coroutine 처럼 작동
             transform.GetChild(1).DOLocalMoveX(1, 1);
             SceneMgr.instance.LoadScene(nextStage);
+            UIController.instance.bag.Hide();
             //transform.GetComponent<Animator>().SetTrigger("OpenDoor");
             //collision.GetComponent<PlayerFSM>().onPortal = true;
         }

@@ -21,9 +21,26 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
+    public int FindEmptySlot()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == null)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private void Start()
     {
         UpdateTimeStamp();
+    }
+
+    public ItemData GetItem(int i)
+    {
+        return items[i];
     }
 
     void UpdateTimeStamp()
@@ -40,20 +57,49 @@ public class GameDataManager : MonoBehaviour
         return timeStamp;
     }
 
-    public ItemData[] GetItem()
+    public ItemData[] GetItems()
     {
         return items;
     }
 
-    public void AddItemAt(int i, ItemData itemData)
+    public void AddItemAt(int i, ItemData itemData, bool redraw)
     {
         items[i] = itemData;
-        UpdateTimeStamp();
+        if (redraw)
+        {
+            UpdateTimeStamp();
+        }
     }
 
     public void RemoveItemAt(int i)
     {
         items[i] = null;
         UpdateTimeStamp();
+    }
+
+    public void MoveItem(int from, int to, bool redraw)
+    {
+        if (from == to)
+        {
+            return;
+        }
+
+        items[to] = items[from];
+        items[from] = null;
+        if (redraw)
+        {
+            UpdateTimeStamp();
+        }
+    }
+
+    public void SwapItem(int i, int j, bool redraw)
+    {
+        ItemData a = items[i];
+        items[i] = items[j];
+        items[j] = a;
+        if (redraw)
+        {
+            UpdateTimeStamp();
+        }
     }
 }

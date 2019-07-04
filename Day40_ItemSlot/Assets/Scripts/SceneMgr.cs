@@ -16,7 +16,6 @@ public class SceneMgr : MonoBehaviour
 
     private void Awake()
     {
-        print("SceneMGR Awake");
         if (instance == null)
         {
             instance = this;

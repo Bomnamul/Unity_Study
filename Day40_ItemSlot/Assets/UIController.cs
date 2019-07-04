@@ -18,8 +18,6 @@ public class UIController : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
-        int i = 0;
-        print(SceneMgr.instance == null);
         SceneMgr.instance.OnBeginLoad += progressBar.OnBeginLoad;
         SceneMgr.instance.OnLoadCompleted += progressBar.OnLoadCompleted;
         SceneMgr.instance.OnProgress += progressBar.OnProgress;
@@ -31,7 +29,7 @@ public class UIController : MonoBehaviour
         if (timeStamp != uiTimeStamp)
         {
             uiTimeStamp = timeStamp;
-            ItemData[] items = GameDataManager.instance.GetItem();
+            ItemData[] items = GameDataManager.instance.GetItems();
             bag.UpdateBag(items);
         }
     }

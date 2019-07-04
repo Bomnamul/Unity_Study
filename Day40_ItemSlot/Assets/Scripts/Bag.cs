@@ -49,9 +49,18 @@ public class Bag : MonoBehaviour
                 {
                     Destroy(child.gameObject);
                 }
-                Instantiate(item.itemButtonPrefab, s.transform, false);
+                var button = Instantiate(item.itemButtonPrefab, s.transform, false);
+                //BounceAnim(button.transform);
             }
             i++;
         }
+    }
+
+    private void BounceAnim(Transform t)
+    {
+        t.DOScale(1.2f, 0.2f).OnComplete(() =>
+        {
+            t.localScale = Vector3.one;
+        });
     }
 }

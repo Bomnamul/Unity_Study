@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
         if (timeStamp != uiTimeStamp)
         {
             uiTimeStamp = timeStamp;
-            ItemData[] items = GameDataManager.instance.GetItems();
+            Item[] items = GameDataManager.instance.GetItems();
             bag.UpdateBag(items);
         }
     }

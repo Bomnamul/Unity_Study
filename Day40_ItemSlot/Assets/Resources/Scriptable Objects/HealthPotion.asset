@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9b625a8c6fe78a4f9db39c21baa1418, type: 3}
-  m_Name: Sword
+  m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  itemName: Sword
-  description: Long sword
-  icon: {fileID: -5208233660972903108, guid: 68ceb04d89b884342847a7bc2e6666da, type: 3}
-  itemButtonPrefab: {fileID: 7858820268888751498, guid: d0bfbf8c12f272740bb7fa417d982f40,
+  itemTypeId: 100
+  itemName: Health Potion
+  description: Small health potion
+  icon: {fileID: -6174568118843670042, guid: 68ceb04d89b884342847a7bc2e6666da, type: 3}
+  itemButtonPrefab: {fileID: 7858820268888751498, guid: a86ebf23683689e44829dc2363e37967,
     type: 3}

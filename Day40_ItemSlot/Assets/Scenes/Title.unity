@@ -1587,6 +1587,8 @@ GameObject:
   - component: {fileID: 1601156031}
   - component: {fileID: 1601156032}
   - component: {fileID: 1601156034}
+  - component: {fileID: 1601156033}
+  - component: {fileID: 1601156035}
   m_Layer: 0
   m_Name: GameFlow
   m_TagString: Untagged
@@ -1639,6 +1641,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 1318995418}
   bag: {fileID: 674913214}
+--- !u!114 &1601156033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601156029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5495beb5ab1914dbb7aff868fc179e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPotion: {fileID: 0}
 --- !u!114 &1601156034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,10 +1667,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: b01386592c9421c49a91150e28faf55e, type: 2}
-  - {fileID: 11400000, guid: 0e7ccba0aedd93f4eab8f7c711790d8e, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - itemData: {fileID: 0}
+  - itemData: {fileID: 0}
+  - itemData: {fileID: 0}
+  - itemData: {fileID: 0}
+--- !u!114 &1601156035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601156029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22361da72b9bb0447ab71fb181e5fda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1621631366
 GameObject:
   m_ObjectHideFlags: 0

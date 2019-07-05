@@ -18,8 +18,8 @@ public class Draggable : MonoBehaviour,
         if (transform.childCount > 0)
         {
             beginSlot = GetComponent<Slot>();
-            ItemData item = GameDataManager.instance.GetItem(beginSlot.slotId);
-            if (item == null)
+            Item item = GameDataManager.instance.GetItem(beginSlot.slotId);
+            if (item.itemData == null)
             {
                 return;
             }
@@ -46,15 +46,15 @@ public class Draggable : MonoBehaviour,
         {
             if (enteredSlot.transform.childCount > 0) // Swap
             {
-                print("Swap");
-                ItemData item = GameDataManager.instance.GetItem(beginSlot.slotId);
-                if (item == null)
+                //print("Swap");
+                Item item = GameDataManager.instance.GetItem(beginSlot.slotId);
+                if (item.itemData == null)
                 {
                     return;
                 }
 
-                ItemData item2 = GameDataManager.instance.GetItem(enteredSlot.slotId);
-                if (item == null)
+                Item item2 = GameDataManager.instance.GetItem(enteredSlot.slotId);
+                if (item.itemData == null)
                 {
                     return;
                 }
@@ -70,9 +70,9 @@ public class Draggable : MonoBehaviour,
             }
             else // Move
             {
-                print("Move");
-                ItemData item = GameDataManager.instance.GetItem(beginSlot.slotId);
-                if (item == null)
+                //print("Move");
+                Item item = GameDataManager.instance.GetItem(beginSlot.slotId);
+                if (item.itemData == null)
                 {
                     return;
                 }
@@ -88,6 +88,16 @@ public class Draggable : MonoBehaviour,
         }
         else if (enteredSlot == null && draggingItemButton !=null) // Item Drop
         {
+            // Rollback
+            //draggingItemButton.SetParent(transform, false);
+            //draggingItemButton.localPosition = Vector3.zero;
+
+            //print("drop");
+            Item item = GameDataManager.instance.GetItem(beginSlot.slotId);
+            if (item.itemData == null)
+            {
+                return;
+            }
             draggingItemButton.GetComponent<Spawn>().SpawnItem();
             Destroy(draggingItemButton.gameObject);
             GameDataManager.instance.RemoveItemAt(beginSlot.slotId);

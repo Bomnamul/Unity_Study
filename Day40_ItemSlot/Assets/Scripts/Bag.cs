@@ -36,20 +36,20 @@ public class Bag : MonoBehaviour
         }
     }
 
-    public void UpdateBag(ItemData[] items)
+    public void UpdateBag(Item[] items)
     {
         GameObject[] slots = GetComponent<Inventory>().slots;
         int i = 0;
         foreach (var item in items)
         {
-            if (item !=null)
+            if (item.itemData != null)
             {
                 var s = slots[i];
                 foreach(Transform child in s.transform)
                 {
                     Destroy(child.gameObject);
                 }
-                var button = Instantiate(item.itemButtonPrefab, s.transform, false);
+                var button = Instantiate(item.itemData.itemButtonPrefab, s.transform, false);
                 //BounceAnim(button.transform);
             }
             i++;

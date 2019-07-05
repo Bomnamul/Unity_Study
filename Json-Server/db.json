@@ -1,0 +1,20 @@
+{
+  "inven": {
+    "itemDataList": [
+      {
+        "itemTypeId": 100,
+        "fileName": "HealthPotion"
+      },
+      {
+        "itemTypeId": 200,
+        "fileName": "LongSword"
+      }
+    ],
+    "items": [
+      100,
+      100,
+      200,
+      0
+    ]
+  }
+}

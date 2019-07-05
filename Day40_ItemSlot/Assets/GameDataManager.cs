@@ -112,12 +112,7 @@ public class GameDataManager : MonoBehaviour
             return;
         }
 
-        items[to] = items[from];
-        items[from].itemData = null;
-        if (redraw)
-        {
-            UpdateTimeStamp();
-        }
+        SwapItem(from, to, false);
     }
 
     public void SwapItem(int i, int j, bool redraw)

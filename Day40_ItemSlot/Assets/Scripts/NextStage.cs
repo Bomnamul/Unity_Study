@@ -19,11 +19,13 @@ public class NextStage : MonoBehaviour
             transform.GetChild(0).DOLocalMoveX(-1, 0.5f);  // Coroutine 처럼 작동
             transform.GetChild(1).DOLocalMoveX(1, 0.5f);
             yield return new WaitForSeconds(0.5f);
+            player.GetComponent<PlayerFSM>().heading = Vector3.up;
             player.transform.DOMoveY(1.5f, 0.5f).SetRelative();
             player.transform.DOScale(0.5f, 0.5f);
             yield return new WaitForSeconds(0.5f);
-            //player.GetComponent<Renderer>().enabled = false;
-            player.transform.localScale = Vector3.one;
+            player.GetComponent<Renderer>().enabled = false;
+            player.GetComponent<PlayerFSM>().heading = Vector3.down;
+            //player.transform.localScale = Vector3.one;
             music?.DOFade(0f, 1f);
             yield return StartCoroutine(sceneTransition.FadeIn());
             SceneMgr.instance.LoadScene(nextStage);

@@ -12,6 +12,7 @@ public class PlayerFSM : MonoBehaviour
     public State state = State.Idle;
     public State prevState = State.Entry;
     public bool movable = true;
+    public Vector3 heading;
 
     Animator anim;
     float lastX, lastY;
@@ -59,7 +60,6 @@ public class PlayerFSM : MonoBehaviour
         {
             float h = Input.GetAxisRaw("Horizontal");
             float v = Input.GetAxisRaw("Vertical");
-            Vector3 heading;
             if (movable)
             {
                 heading = new Vector3(h, v, 0).normalized;
@@ -68,7 +68,7 @@ public class PlayerFSM : MonoBehaviour
             }
             else
             {
-                heading = Vector3.zero;
+                //heading = Vector3.zero;
             }
 
             UpdateAnimation(heading);

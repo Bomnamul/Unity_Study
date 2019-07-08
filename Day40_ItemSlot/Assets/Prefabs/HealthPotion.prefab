@@ -193,3 +193,5 @@ MonoBehaviour:
   itemButton: {fileID: 7858820268888751498, guid: a86ebf23683689e44829dc2363e37967,
     type: 3}
   itemData: {fileID: 11400000, guid: b01386592c9421c49a91150e28faf55e, type: 2}
+  pickupEffect: {fileID: 6611472619486847091, guid: ee20a1982c9949149afd87410e400439,
+    type: 3}

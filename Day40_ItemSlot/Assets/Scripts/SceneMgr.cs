@@ -52,7 +52,7 @@ public class SceneMgr : MonoBehaviour
             {
                 float progress = Mathf.Clamp01(i / 10f);
                 OnProgress?.Invoke(progress);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
                 i++;
             }
 

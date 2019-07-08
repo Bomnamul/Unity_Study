@@ -8,6 +8,7 @@ public class Pickup : MonoBehaviour
 {
     public GameObject itemButton;
     public ItemData itemData;
+    public GameObject pickupEffect;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,8 +20,10 @@ public class Pickup : MonoBehaviour
                 GameDataManager.instance.AddItemAt(emptySlotId, itemData, false);
 
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-                Transform emptySlot = UIController.instance.bag.GetComponent<Inventory>().slots[emptySlotId].transform;
+                Transform emptySlot = UIController.instance.bag.slots[emptySlotId].transform;
                 var button = Instantiate(itemButton, emptySlot, false);
+                var fx = Instantiate(pickupEffect, transform.position, Quaternion.identity);
+                Destroy(fx, 0.2f);
                 button.transform.localScale *= 0.8f;
                 button.transform.position = screenPos;
                 button.transform.DOMove(emptySlot.position, 0.4f).SetEase(Ease.OutExpo).OnComplete(() =>

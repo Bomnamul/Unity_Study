@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(order: -100)]
 public class SceneMgr : MonoBehaviour
 {
     public static SceneMgr instance;

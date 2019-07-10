@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(order: -99)]
 public class UIController : MonoBehaviour
 {
     public ProgressBar progressBar;

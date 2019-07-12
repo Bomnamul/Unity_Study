@@ -11,6 +11,7 @@ public class GameFlow : MonoBehaviour
     public GameObject playerPrefab;
     public RectTransform progressBar;
 
+    [HideInInspector]
     public GameObject player;
 
     private void Awake()

@@ -29,7 +29,7 @@ public class PlayerFSM : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = transform.Find("Model").GetComponent<Animator>();
         DontDestroyOnLoad(this);
     }
 

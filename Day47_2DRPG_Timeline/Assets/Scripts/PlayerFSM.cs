@@ -21,6 +21,9 @@ public class PlayerFSM : MonoBehaviour
     FloatingJoystick joystick;
     JoystickButton attackButton;
 
+    Rigidbody2D rb;
+    Vector2 movement;
+
     public void SetState(State state)
     {
         prevState = this.state;
@@ -31,6 +34,8 @@ public class PlayerFSM : MonoBehaviour
     {
         anim = transform.Find("Model").GetComponent<Animator>();
         DontDestroyOnLoad(this);
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     IEnumerator Start()
@@ -71,8 +76,10 @@ public class PlayerFSM : MonoBehaviour
             if (controllable)
             {
                 heading = new Vector3(h + joystick.Horizontal, v + joystick.Vertical, 0).normalized;
-                Vector3 movement = heading * moveSpeed * Time.deltaTime;
-                transform.position += movement;
+                movement = heading * moveSpeed;
+
+                //Vector3 movement = heading * moveSpeed * Time.deltaTime;
+                //transform.position += movement;
             }
             else
             {
@@ -186,5 +193,10 @@ public class PlayerFSM : MonoBehaviour
             anim.SetBool("OnMove", true);
             SetState(State.Walk);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
     }
 }

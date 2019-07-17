@@ -17,9 +17,10 @@ public class ActivateCamera : MonoBehaviour
     {
         if (vcam != null && vcam.Follow != null && GameFlow.instance.player != null)
         {
-            var bb = vcam.Follow.GetComponent<CinemachineTargetGroup>().BoundingBox;
-            print(bb.extents + ", " + bb.extents.magnitude);
-            if (bb.extents.magnitude >= distance)
+            var bb = vcam.Follow.GetComponent<CinemachineTargetGroup>().Sphere;
+            //print(bb.extents + ", " + bb.extents.magnitude);
+            print(bb.radius * 2 + ", " + distance);
+            if (bb.radius * 2 >= distance)
             {
                 vcam.Priority = 9;
             }

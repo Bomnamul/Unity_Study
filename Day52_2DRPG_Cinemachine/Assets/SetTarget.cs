@@ -15,7 +15,7 @@ public class SetTarget : MonoBehaviour
             var player = GameObject.FindGameObjectWithTag("Player")?.transform;
             if (player != null && targetGroup.FindMember(player) == -1)
             {
-                targetGroup.AddMember(player, 1f, 1f);
+                targetGroup.AddMember(player, 1f, 0.5f);
             }
         }
     }

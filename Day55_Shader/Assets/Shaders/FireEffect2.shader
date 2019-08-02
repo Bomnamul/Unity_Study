@@ -26,7 +26,7 @@ Shader "Custom/FireEffect2"
 
         // half _Glossiness; // 16 bit (2 byte)
         // half _Metallic;
-        // fixed4 _Color; // half의 절반 (1 byte)
+        // fixed4 _Color; // 11 bit
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {

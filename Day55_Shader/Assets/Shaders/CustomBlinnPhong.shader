@@ -55,9 +55,19 @@
 			// spec = pow(spec, 100);
 			spec = pow(spec, _SpecPow);
 			specularColor = spec * _SpecCol.rgb * s.Gloss;
-			final.rgb = diffuseColor.rgb + specularColor.rgb;
-			final.a = s.Alpha;
 
+			// Rim term
+			float3 rimColor;
+			float rim = abs(dot(viewDir, s.Normal)); // 양면을 렌더링 해야 할 경우 saturate대신 abs사용
+			float invRim = 1 - rim;
+			rimColor = pow(invRim, 6) * float3(1, 1, 1); // Properties로 빼놓으면 Inspector에서 수정가능
+
+			// Fake speculat term
+			float3 specularColor2;
+			specularColor2 = pow(rim, 50) * float3(1, 1, 1) * s.Gloss;
+
+			final.rgb = diffuseColor.rgb + specularColor.rgb + rimColor.rgb + specularColor2.rgb;
+			final.a = s.Alpha;
 			return final;
 		}
         ENDCG

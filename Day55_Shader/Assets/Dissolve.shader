@@ -5,7 +5,8 @@
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_NoiseTex ("Noise", 2D) = "white" {}
 		_Cut ("Alpha Cut", Range(0, 1)) = 0.1
-		// Outline Color, Thickness
+		[HDR] _OutColor ("Outline Color", Color) = (1, 1, 1, 1)
+		_OutThickness ("Outline Thickness", Range(1, 1.5)) = 1.15
     }
     SubShader
     {
@@ -43,6 +44,8 @@
         sampler2D _MainTex;
 		sampler2D _NoiseTex;
 		float _Cut;
+		float4 _OutColor;
+		float _OutThickness;
 
         struct Input
         {
@@ -62,12 +65,13 @@
 				alpha = 0;
 			}
 			float outline;
-			if (noise.r >= _Cut * 1.2) {
+			if (noise.r >= _Cut * _OutThickness) {
 				outline = 0;
 			} else {
 				outline = 1;
 			}
-			o.Emission = outline * float3(1, 0, 0);
+			// o.Emission = float3(IN.uv_NoiseTex, 0); // MainTex의 uv와 같은 위치의 픽셀을 불러옴
+			o.Emission = outline * _OutColor.rgb;
             o.Alpha = alpha;
         }
         ENDCG

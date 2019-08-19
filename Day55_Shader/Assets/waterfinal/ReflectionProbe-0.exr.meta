@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 656a59a5ff93c46498416d97e5c16b66
-timeCreated: 1461295459
-licenseType: Store
+guid: aa01cd27ea2176640ab1e977727ab37e
+timeCreated: 1504673740
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap
@@ -23,14 +23,14 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
-  cubemapConvolution: 0
-  seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 4096
+  cubemapConvolution: 1
+  seamlessCubemap: 1
+  textureFormat: 1
+  maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
-    mipBias: -1
+    filterMode: 2
+    aniso: 0
+    mipBias: 0
     wrapMode: 1
   nPOTScale: 1
   lightmap: 0
@@ -52,26 +52,10 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 4096
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 4096
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0

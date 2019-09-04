@@ -39,10 +39,13 @@
             CGPROGRAM
 			#pragma target 3.0
 
+            // #pragma multi_compile DIRECTIONAL DIRECTIONAL_COOKIE POINT POINT_COOKIE SPOT
+            #pragma multi_compile_fwdadd
+
             #pragma vertex vert
             #pragma fragment frag
 
-			#define POINT
+			// #define POINT
 
 			#include "MyLighting.cginc"
 

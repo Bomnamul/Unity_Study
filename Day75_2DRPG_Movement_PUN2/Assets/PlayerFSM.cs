@@ -8,7 +8,7 @@ public class PlayerFSM : MonoBehaviour, IPunObservable
 {
     public float moveSpeed = 4;
 
-    public enum State { Entry = -1, Idle, Walk, Attack, HammerAttack }
+    public enum State { Entry = -1, Idle, Walk, Attack }
     public State state = State.Idle;
     public State prevState = State.Entry;
 
@@ -52,10 +52,6 @@ public class PlayerFSM : MonoBehaviour, IPunObservable
                 {
                     SetState(State.Attack);
                 }
-                else if (Input.GetKeyDown(KeyCode.C))
-                {
-                    SetState(State.HammerAttack);
-                }
             }
             
             switch (state)
@@ -69,19 +65,9 @@ public class PlayerFSM : MonoBehaviour, IPunObservable
                 case State.Attack:
                     yield return StartCoroutine(Attack());
                     break;
-                case State.HammerAttack:
-                    yield return StartCoroutine(HammerAttack());
-                    break;
             }
             yield return null;
         }
-    }
-
-    IEnumerator HammerAttack()
-    {
-        anim.SetTrigger("OnHammerAttack");
-        yield return new WaitForSeconds(0.583f);
-        SetState(State.Idle);
     }
 
     IEnumerator Attack()

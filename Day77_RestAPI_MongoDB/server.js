@@ -25,6 +25,27 @@ const registerRoutes = () => {
             handler: DogController.create
         }
     });
+    server.route({
+        method: "GET",
+        path: "/dogs/{id}",
+        options: {
+            handler: DogController.get
+        }
+    });
+    server.route({
+        method: "PUT",
+        path: "/dogs/{id}",
+        options: {
+            handler: DogController.update
+        }
+    });
+    server.route({
+        method: "DELETE",
+        path: "/dogs/{id}",
+        options: {
+            handler: DogController.remove
+        }
+    });
 };
 
 const init = async () => {

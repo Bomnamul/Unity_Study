@@ -1,8 +1,10 @@
 'use strict';
 
-const Hapi = require("hapi");
+const Hapi = require("@hapi/hapi");
 const mongoose = require("mongoose");
+const hapiAuthJWT = require("hapi-auth-jwt2");
 const DogController = require("./src/controllers/dog");
+const UserController = require("./src/controllers/user");
 const MongoDBUrl = "mongodb://localhost:27017/dogapi";
 
 const server = new Hapi.Server({
@@ -14,9 +16,8 @@ const registerRoutes = () => {
     server.route({
         method: "GET",
         path: "/dogs",
-        options: {
-            handler: DogController.list
-        }
+        config: { auth: false },
+        handler: DogController.list
     });
     server.route({
         method: "POST",
@@ -28,9 +29,8 @@ const registerRoutes = () => {
     server.route({
         method: "GET",
         path: "/dogs/{id}",
-        options: {
-            handler: DogController.get
-        }
+        config: { auth: false },
+        handler: DogController.get
     });
     server.route({
         method: "PUT",
@@ -46,9 +46,49 @@ const registerRoutes = () => {
             handler: DogController.remove
         }
     });
+
+
+    server.route({
+        method: "POST",
+        path: "/auth/register",
+        config: { auth: false },
+        handler: UserController.register
+    });
+    server.route({
+        method: "POST",
+        path: "/auth/login",
+        config: { auth: false },
+        handler: UserController.login
+    });
+    server.route({
+        method: "GET",
+        path: "/auth/users",
+        handler: UserController.list
+    });
+    server.route({
+        method: "DELETE",
+        path: "/auth/users/{username}",
+        handler: UserController.remove
+    })
 };
 
+const validateUser = async (decoded, req, h) => {
+    console.log("Decoded", decoded);
+    if (decoded && decoded.sub)
+        return { isValid: true };
+    else
+        return { isValid: false };
+}
+
 const init = async () => {
+    await server.register(hapiAuthJWT);
+    server.auth.strategy("jwt", "jwt", {
+        key: "NeverShareYourSecret",
+        validate: validateUser,
+        verifyOptions: { algorithms: ["HS256"] }
+    });
+    server.auth.default('jwt');
+
     registerRoutes();
 
     await server.start();

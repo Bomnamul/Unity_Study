@@ -10,8 +10,10 @@
   "author": "djyang",
   "license": "ISC",
   "dependencies": {
+    "@hapi/hapi": "^18.4.0",
     "boom": "^7.1.1",
-    "hapi": "^17.1.1",
+    "hapi-auth-jwt2": "^8.6.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^4.13.6"
   }
 }

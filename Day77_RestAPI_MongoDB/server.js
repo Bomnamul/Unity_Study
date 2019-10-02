@@ -6,10 +6,17 @@ const hapiAuthJWT = require("hapi-auth-jwt2");
 const DogController = require("./src/controllers/dog");
 const UserController = require("./src/controllers/user");
 const MongoDBUrl = "mongodb://localhost:27017/dogapi";
+const fs = require("fs"); // File system library
+
+var options = { // private key를 만들어서 그것으로 public key 만듦
+    key: fs.readFileSync("./private.pem"),
+    cert: fs.readFileSync("./public.pem")
+};
 
 const server = new Hapi.Server({
     port:3000,
-    host:"localhost"
+    host:"localhost",
+    tls: options
 });
 
 const registerRoutes = () => {
